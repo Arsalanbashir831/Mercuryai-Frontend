@@ -1,16 +1,15 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 
 const Layout = () => {
+	const bgColor = useColorModeValue("gray.700", "gray.100");
+
 	return (
-		<Flex direction='column' height='100vh' overflow='hidden'>
+		<Flex direction='column' height='100vh' overflow='hidden' bg={bgColor}>
 			<Header />
 			<Box as='main' flex='1' overflow='hidden'>
 				<Outlet />
-			</Box>
-			<Box as='footer' bg='gray.800' p={4} color='white'>
-				Footer
 			</Box>
 		</Flex>
 	);
