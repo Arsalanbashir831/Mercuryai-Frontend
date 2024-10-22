@@ -20,7 +20,7 @@ import { Icon } from "@iconify/react";
 import NotificationDropdown from "./NotificationDropdown";
 import { useAuth } from "../context/AuthContext";
 import LoginModal from "./LoginModal";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logoSrc from "/logo.png";
 
@@ -34,7 +34,7 @@ const languageMenuItems = [
 ];
 
 const userMenuItems = [
-	{ icon: "mdi:account", label: "Account" },
+	{ icon: "mdi:account", label: "Account", link: "/settings/account" },
 	{ icon: "mdi:settings", label: "Settings" },
 	{ icon: "iconoir:bell-notification-solid", label: "News & Updates" },
 	{ icon: "mdi:paper-edit-outline", label: "Subscription" },
@@ -77,6 +77,7 @@ const Header = () => {
 	});
 
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	const {
 		isOpen: isLoginOpen,
@@ -93,6 +94,8 @@ const Header = () => {
 			logout();
 		} else if (item.isThemeToggle) {
 			// toggleColorMode();
+		} else if (item.link) {
+			navigate(item.link);
 		}
 	};
 
@@ -115,7 +118,8 @@ const Header = () => {
 							color={textColor}
 							borderBottom={location.pathname === "/" ? "2px solid" : "none"}
 							borderColor='teal'
-							borderRadius={0}>
+							borderRadius={0}
+							onClick={() => navigate("/")}>
 							Chat
 						</Button>
 					)}
