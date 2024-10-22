@@ -10,18 +10,19 @@ import {
 	MenuList,
 	MenuItem,
 	Box,
+	useColorMode,
 	useColorModeValue,
 	useDisclosure,
 	Image,
 	Tabs,
 	TabList,
 	Tab,
+	Switch,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import NotificationDropdown from "./NotificationDropdown";
-import { useAuth } from "../context/AuthContext"; // Import the Auth Context
+import { useAuth } from "../context/AuthContext";
 import LoginModal from "./LoginModal";
-import { use } from "framer-motion/client";
 import { useLocation } from "react-router-dom";
 
 const languageMenuItems = [
@@ -61,6 +62,7 @@ const notifications = [
 
 const Header = () => {
 	const { isAuthenticated, login, logout } = useAuth();
+	const { colorMode, toggleColorMode } = useColorMode();
 	const logoSrc = "./logo.png";
 
 	const bgColor = useColorModeValue("gray.900", "gray.100");
@@ -69,8 +71,8 @@ const Header = () => {
 	const menuBgColor = useColorModeValue("gray.800", "white");
 	const menuItemColor = useColorModeValue("white", "gray.800");
 	const menuHoverBgColor = useColorModeValue("gray.700", "gray.100");
+	const dividerColor = useColorModeValue("gray.600", "gray.200");
 
-	// Generic state to handle multiple toggles
 	const [isOpen, setIsOpen] = useState({
 		userMenu: false,
 		languageMenu: false,
@@ -84,9 +86,16 @@ const Header = () => {
 		onClose: onLoginClose,
 	} = useDisclosure();
 
-	// Toggle function to handle state changes for both menus
 	const toggleMenu = (menu) => {
 		setIsOpen((prev) => ({ ...prev, [menu]: !prev[menu] }));
+	};
+
+	const handleMenuItemClick = (item) => {
+		if (item.isLogout) {
+			logout();
+		} else if (item.isThemeToggle) {
+			// toggleColorMode();
+		}
 	};
 
 	return (
@@ -106,16 +115,13 @@ const Header = () => {
 							color={textColor}
 							borderBottom={location.pathname === "/" ? "2px solid" : "none"}
 							borderColor='teal'
-							borderRadius={0}
-							// _hover={{ bg: menuHoverBgColor }}
-							// _active={{ bg: menuHoverBgColor }}
-						>
+							borderRadius={0}>
 							Chat
 						</Button>
 					)}
 				</HStack>
 				<HStack spacing={4}>
-					{isAuthenticated && <Text>Cosa c'è di nuovo ?</Text>}{" "}
+					{isAuthenticated && <Text>Cosa c'è di nuovo ?</Text>}
 					<IconButton
 						icon={<Icon icon='ic:baseline-facebook' />}
 						variant='ghost'
@@ -130,7 +136,6 @@ const Header = () => {
 							<NotificationDropdown notifications={notifications} />
 						</>
 					)}
-					{/* Language Menu */}
 					<Menu
 						isOpen={isOpen.languageMenu}
 						onOpen={() => toggleMenu("languageMenu")}
@@ -162,7 +167,6 @@ const Header = () => {
 							))}
 						</MenuList>
 					</Menu>
-					{/* User Menu or Login/Register Button */}
 					{isAuthenticated ? (
 						<Menu
 							isOpen={isOpen.userMenu}
@@ -187,18 +191,55 @@ const Header = () => {
 								Nome Cliente
 							</MenuButton>
 							<MenuList bg={menuBgColor} borderColor={menuHoverBgColor}>
-								{userMenuItems.map(({ icon, label }) => (
+								{userMenuItems.map((item) => (
 									<MenuItem
-										key={label}
+										key={item.label}
 										color={menuItemColor}
 										bg={menuBgColor}
-										_hover={{ bg: menuHoverBgColor }}>
+										_hover={{ bg: menuHoverBgColor }}
+										onClick={() => handleMenuItemClick(item)}>
 										<Flex align='center' gap={3}>
-											<Icon icon={icon} />
-											{label}
+											<Icon icon={item.icon} />
+											{item.label}
+											{item.isThemeToggle && (
+												<Text ml='auto' fontSize='sm'>
+													{colorMode === "dark" ? "DARK" : "LIGHT"}
+												</Text>
+											)}
 										</Flex>
 									</MenuItem>
 								))}
+
+								{/* Divider */}
+								<Box my={2} h='1px' bg={dividerColor} />
+
+								{/* Theme Toggle and Logout Row */}
+								<Box px={3} py={2}>
+									<Flex justify='space-between' align='center'>
+										<IconButton
+											icon={<Icon icon='mdi:logout' />}
+											variant='ghost'
+											size='sm'
+											onClick={logout}
+											color={menuItemColor}
+											bg='red.900'
+											_hover={{ bg: "red.800" }}
+										/>
+										<Flex align='center' gap={2}>
+											<Switch
+												colorScheme='blue'
+												isChecked={colorMode !== "dark"}
+												// onChange={toggleColorMode}
+												size='md'
+											/>
+											<Icon
+												icon={
+													colorMode === "dark" ? "bi:sun-fill" : "line-md:moon"
+												}
+											/>
+										</Flex>
+									</Flex>
+								</Box>
 							</MenuList>
 						</Menu>
 					) : (
