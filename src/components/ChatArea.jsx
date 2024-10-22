@@ -144,7 +144,19 @@ const ChatArea = () => {
 					</Box>
 				</Flex>
 			</Box>
-			<Box flex={1} overflowY='auto' mb={4}>
+			<Box
+				flex={1}
+				overflowY='auto'
+				mb={4}
+				maxH={"calc(100% - 10px)"}
+				sx={{
+					"&::-webkit-scrollbar": { width: "4px" },
+					"&::-webkit-scrollbar-track": { background: "gray.900" },
+					"&::-webkit-scrollbar-thumb": {
+						background: "gray.600",
+						borderRadius: "full",
+					},
+				}}>
 				{messages.map((msg, index) => (
 					<ChatMessage key={index} message={msg.text} isUser={msg.isUser} />
 				))}

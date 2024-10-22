@@ -8,7 +8,7 @@ const config = {
 const colors = {
 	bgColor: {
 		light: "gray.100",
-		dark: "gray.900",
+		dark: "gray.700",
 	},
 	textColor: {
 		light: "gray.800",

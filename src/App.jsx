@@ -19,11 +19,17 @@ const App = () => {
 			<Header />
 			<Box as='main' flex='1' overflow='hidden'>
 				<Routes>
-					<Route index path='/' element={<Home />} />
+					<Route path='/' element={<Home />} />
 					<Route
 						path='/dashboard/mercury-ai-training-course'
 						element={<Dashboard />}
 					/>
+					<Route
+						path='/dashboard/mercury-ai-pro-advance-training-course'
+						element={<Dashboard />}
+					/>
+					<Route path='/dashboard/news-articles' element={<Dashboard />} />
+					<Route path='/dashboard/referral-program' element={<Dashboard />} />
 					<Route path='/about' element={<About />} />
 				</Routes>
 			</Box>

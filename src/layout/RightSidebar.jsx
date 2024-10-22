@@ -25,7 +25,20 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 				mt={0}
 				bg='blackAlpha.500'
 				borderRadius={10}>
-				<VStack align='stretch' spacing={4} p={4}>
+				<VStack
+					spacing={2}
+					align='stretch'
+					maxH={"calc(100% - 10px)"}
+					overflowY='auto'
+					p={4}
+					sx={{
+						"&::-webkit-scrollbar": { width: "4px" },
+						"&::-webkit-scrollbar-track": { background: "gray.900" },
+						"&::-webkit-scrollbar-thumb": {
+							background: "gray.600",
+							borderRadius: "full",
+						},
+					}}>
 					{children}
 				</VStack>
 			</Box>

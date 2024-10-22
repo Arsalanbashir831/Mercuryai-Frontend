@@ -21,17 +21,16 @@ import {
 	Td,
 	List,
 	ListItem,
-	ListIcon,
 	Flex,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import { pre } from "framer-motion/client";
+
+import logoSrc from "../../public/logo.png";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
 	const bgColor = useColorModeValue("gray.900", "gray.100");
 	const textColor = useColorModeValue("white", "gray.800");
 	const inputBgColor = useColorModeValue("gray.700", "white");
-	const logoSrc = "./logo.png";
 
 	// State to manage the current step
 	const [step, setStep] = useState(1);

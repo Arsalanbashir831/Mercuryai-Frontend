@@ -7,6 +7,7 @@ import RightSidebar from "./RightSidebar";
 
 const Layout = ({
 	leftNavchildren,
+	leftNavHeader,
 	leftNavHeaderButton,
 	leftNavFooterButton,
 	rightNavchildren,
@@ -20,6 +21,7 @@ const Layout = ({
 		<Flex height='100%' overflow='hidden' position='relative'>
 			{leftNavchildren && (
 				<LeftSidebar
+					header={leftNavHeader}
 					headerButton={leftNavHeaderButton}
 					footerButton={leftNavFooterButton}>
 					{leftNavchildren}
@@ -29,7 +31,6 @@ const Layout = ({
 			<Box as='main' flex='1' overflow='hidden'>
 				{centerComponent}
 			</Box>
-
 			{rightNavchildren && (
 				<RightSidebar
 					headerComponent={rightNavHeaderComponent}

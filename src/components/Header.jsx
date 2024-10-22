@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
 	Flex,
 	HStack,
@@ -14,16 +14,15 @@ import {
 	useColorModeValue,
 	useDisclosure,
 	Image,
-	Tabs,
-	TabList,
-	Tab,
 	Switch,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import NotificationDropdown from "./NotificationDropdown";
 import { useAuth } from "../context/AuthContext";
 import LoginModal from "./LoginModal";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import logoSrc from "../../public/logo.png";
 
 const languageMenuItems = [
 	{ label: "English - EN" },
@@ -63,7 +62,6 @@ const notifications = [
 const Header = () => {
 	const { isAuthenticated, login, logout } = useAuth();
 	const { colorMode, toggleColorMode } = useColorMode();
-	const logoSrc = "./logo.png";
 
 	const bgColor = useColorModeValue("gray.900", "gray.100");
 	const textColor = useColorModeValue("white", "gray.800");
@@ -107,7 +105,9 @@ const Header = () => {
 				bg={bgColor}
 				color={textColor}>
 				<HStack spacing={4}>
-					<Image src={logoSrc} alt='Logo' mx='auto' width='200px' />
+					<Link to='/'>
+						<Image src={logoSrc} alt='Mercury AI' mx='auto' width='200px' />
+					</Link>
 					{isAuthenticated && (
 						<Button
 							ml={8}
