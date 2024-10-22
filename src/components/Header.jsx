@@ -22,7 +22,7 @@ import { useAuth } from "../context/AuthContext";
 import LoginModal from "./LoginModal";
 import { Link, useLocation } from "react-router-dom";
 
-import logoSrc from "../../public/logo.png";
+import logoSrc from "/logo.png";
 
 const languageMenuItems = [
 	{ label: "English - EN" },

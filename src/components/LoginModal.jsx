@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
-import logoSrc from "../../public/logo.png";
+import logoSrc from "/logo.png";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
 	const bgColor = useColorModeValue("gray.900", "gray.100");
