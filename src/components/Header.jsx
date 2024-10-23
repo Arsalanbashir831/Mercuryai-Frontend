@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Flex,
 	HStack,
@@ -86,7 +86,7 @@ const notifications = [
 
 const Header = () => {
 	const { isAuthenticated, login, logout } = useAuth();
-	const { colorMode, toggleColorMode } = useColorMode();
+	const { colorMode, toggleColorMode, setColorMode } = useColorMode();
 
 	const bgColor = "gray.900";
 	const textColor = "white";
@@ -109,6 +109,10 @@ const Header = () => {
 		onOpen: onLoginOpen,
 		onClose: onLoginClose,
 	} = useDisclosure();
+
+	useEffect(() => {
+		setColorMode("light");
+	}, []);
 
 	const toggleMenu = (menu) => {
 		setIsOpen((prev) => ({ ...prev, [menu]: !prev[menu] }));
