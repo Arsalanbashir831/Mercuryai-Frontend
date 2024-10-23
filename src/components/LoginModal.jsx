@@ -312,7 +312,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 								Skip
 							</Button>
 							<Button
-								colorScheme='teal'
+								colorScheme='blue'
 								mr={3}
 								onClick={nextStep}
 								mb={2}

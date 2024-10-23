@@ -237,7 +237,7 @@ const ChatArea = () => {
 								<Icon
 									icon='bi:arrow-up-circle-fill'
 									fontSize={24}
-									color='teal'
+									color='lightblue'
 								/>
 							}
 							colorScheme='transparent'

@@ -54,7 +54,7 @@ const Sidebar = () => {
 			<Box p={4}>
 				<Button
 					leftIcon={<Icon icon='dashicons:plus-alt' />}
-					colorScheme='teal'
+					colorScheme='blue'
 					borderRadius='2xl'
 					width='100%'>
 					New Chat
@@ -89,9 +89,9 @@ const Sidebar = () => {
 											py={1}
 											px={2}
 											color='white'
-											bg={selectedChat === chat.id ? "teal.500" : "transparent"}
+											bg={selectedChat === chat.id ? "blue.500" : "transparent"}
 											_hover={{
-												bg: selectedChat === chat.id ? "teal.600" : "teal.500",
+												bg: selectedChat === chat.id ? "blue.600" : "blue.500",
 											}}
 											borderRadius='full'
 											mb={1}
@@ -107,7 +107,7 @@ const Sidebar = () => {
 			</Box>
 
 			<Box px={4} pb={4}>
-				<Button colorScheme='teal' width='100%' borderRadius='2xl'>
+				<Button colorScheme='blue' width='100%' borderRadius='2xl'>
 					Effettua subito l’upgrade
 				</Button>
 			</Box>

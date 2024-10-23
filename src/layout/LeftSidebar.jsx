@@ -8,7 +8,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 				<Box p={4}>
 					<Button
 						leftIcon={<Icon icon={headerButton.icon} />}
-						colorScheme='teal'
+						colorScheme='blue'
 						borderRadius='2xl'
 						width='100%'>
 						{headerButton.label}
@@ -61,7 +61,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 
 			{footerButton && (
 				<Box px={4} pb={4}>
-					<Button colorScheme='teal' width='100%' borderRadius='2xl'>
+					<Button colorScheme='blue' width='100%' borderRadius='2xl'>
 						{footerButton.label}
 					</Button>
 				</Box>

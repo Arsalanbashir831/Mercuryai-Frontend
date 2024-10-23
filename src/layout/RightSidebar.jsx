@@ -10,7 +10,7 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 				<Box p={4}>
 					<Button
 						leftIcon={<Icon icon={headerButton.icon} />}
-						colorScheme='teal'
+						colorScheme='blue'
 						width='100%'
 						onClick={headerButton.onClick}>
 						{headerButton.label}
@@ -22,7 +22,7 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 				flex={1}
 				overflowY='auto'
 				m={4}
-				mt={0}
+				mt={headerComponent || headerButton ? 0 : 4}
 				bg='blackAlpha.500'
 				borderRadius={10}>
 				<VStack

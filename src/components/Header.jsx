@@ -23,6 +23,7 @@ import LoginModal from "./LoginModal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logoSrc from "/logo.png";
+import { link } from "framer-motion/client";
 
 const languageMenuItems = [
 	{ label: "English - EN" },
@@ -36,13 +37,37 @@ const languageMenuItems = [
 const userMenuItems = [
 	{ icon: "mdi:account", label: "Account", link: "/settings/account" },
 	{ icon: "mdi:settings", label: "Settings" },
-	{ icon: "iconoir:bell-notification-solid", label: "News & Updates" },
-	{ icon: "mdi:paper-edit-outline", label: "Subscription" },
-	{ icon: "file-icons:moleculer", label: "Amazon API" },
-	{ icon: "hugeicons:laptop-programming", label: "Training" },
-	{ icon: "mdi:credit-card-outline", label: "Payment Management" },
+	{
+		icon: "iconoir:bell-notification-solid",
+		label: "News & Updates",
+		link: "/dashboard/news-articles",
+	},
+	{
+		icon: "mdi:paper-edit-outline",
+		label: "Subscription",
+		link: "/settings/subscription",
+	},
+	{
+		icon: "file-icons:moleculer",
+		label: "Amazon API",
+		link: "/settings/amazon-api",
+	},
+	{
+		icon: "hugeicons:laptop-programming",
+		label: "Training",
+		link: "/dashboard/mercury-ai-training-course",
+	},
+	{
+		icon: "mdi:credit-card-outline",
+		label: "Payment Management",
+		link: "/settings/payment-management",
+	},
 	{ icon: "mdi:help-circle-outline", label: "Help & Contacts" },
-	{ icon: "mdi:account-multiple-outline", label: "Affiliation" },
+	{
+		icon: "mdi:account-multiple-outline",
+		label: "Affiliation",
+		link: "/dashboard/referral-program",
+	},
 ];
 
 const notifications = [
@@ -117,7 +142,7 @@ const Header = () => {
 							variant='unstyled'
 							color={textColor}
 							borderBottom={location.pathname === "/" ? "2px solid" : "none"}
-							borderColor='teal'
+							borderColor='blue.500'
 							borderRadius={0}
 							onClick={() => navigate("/")}>
 							Chat

@@ -39,9 +39,9 @@ export default function ChatLeftSideNav() {
 							py={1}
 							px={2}
 							color='white'
-							bg={selectedChat === chat.id ? "teal.500" : "transparent"}
+							bg={selectedChat === chat.id ? "blue.500" : "transparent"}
 							_hover={{
-								bg: selectedChat === chat.id ? "teal.600" : "teal.500",
+								bg: selectedChat === chat.id ? "blue.600" : "blue.500",
 							}}
 							borderRadius='full'
 							mb={1}

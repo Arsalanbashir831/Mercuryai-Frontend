@@ -6,7 +6,7 @@ export default function VideoPlayer() {
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	return (
-		<Box position='relative' borderRadius='md' overflow='hidden'>
+		<Box position='relative' borderRadius='md' overflow='hidden' w='100%'>
 			<AspectRatio ratio={16 / 9}>
 				<Image
 					src='https://via.placeholder.com/800x450'

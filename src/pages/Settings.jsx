@@ -1,16 +1,12 @@
 import { lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../layout/Layout";
-import { useRefferal } from "../context/RefferalContext";
-import AmazonSellerApi from "../components/AmazonSellerApi";
-import PaymentManagement from "../components/PaymentManagement";
 import SettingsSideNav from "../components/SettingsSideNav";
 
 const AccountSettings = lazy(() => import("../components/AccountSettings"));
-const ReferralProgram = lazy(() => import("../components/ReferralProgram"));
-const AffiliateDashboard = lazy(() =>
-	import("../components/AffiliateDashboard")
-);
+const AmazonSellerApi = lazy(() => import("../components/AmazonSellerApi"));
+const PaymentManagement = lazy(() => import("../components/PaymentManagement"));
+const PricingTable = lazy(() => import("../components/PricingTable"));
 
 const settingRoutes = {
 	"/settings/account": {
@@ -31,27 +27,16 @@ const settingRoutes = {
 	"/settings/subscription": {
 		rightNavHeaderComponent: null,
 		rightNavchildren: null,
-		centerComponent: null, // Dynamically set later
+		centerComponent: <PricingTable />,
 	},
 };
 
 const Settings = () => {
-	const { isRefferalSubmitted } = useRefferal();
 	const location = useLocation();
 	const currentRoute = settingRoutes[location.pathname];
 
 	// Determine which component to show based on isRefferalSubmitted
-	const CenterComponent =
-		location.pathname === "/dashboard/referral-program" ? (
-			isRefferalSubmitted ? (
-				<AffiliateDashboard />
-			) : (
-				<ReferralProgram />
-			)
-		) : (
-			currentRoute?.centerComponent
-		);
-
+	const CenterComponent = currentRoute?.centerComponent;
 	const RightNavHeaderComponent = currentRoute?.rightNavHeaderComponent;
 	const RightNavChildren = currentRoute?.rightNavchildren;
 

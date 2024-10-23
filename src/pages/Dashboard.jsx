@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useRefferal } from "../context/RefferalContext";
 import Layout from "../layout/Layout";
@@ -9,6 +9,13 @@ const CourseModuleList = lazy(() => import("../components/CourseModuleList"));
 const TrainingCourseModule = lazy(() =>
 	import("../components/TrainingCourseModule")
 );
+const AdvanceCourseSidebar = lazy(() =>
+	import("../components/AdvanceCourseSidebar")
+);
+const AdvanceTrainingCourseModule = lazy(() =>
+	import("../components/AdvanceTrainingCourseModule")
+);
+const CourseTopic = lazy(() => import("../components/CourseTopic"));
 const NewsArticles = lazy(() => import("../components/NewsArticles"));
 const ReferralProgram = lazy(() => import("../components/ReferralProgram"));
 const AffiliateDashboard = lazy(() =>
@@ -22,9 +29,9 @@ const dashboardRoutes = {
 		centerComponent: <TrainingCourseModule />,
 	},
 	"/dashboard/mercury-ai-pro-advance-training-course": {
-		rightNavHeaderComponent: <CourseProgressBar />,
-		rightNavchildren: <CourseModuleList />,
-		centerComponent: <TrainingCourseModule />,
+		rightNavHeaderComponent: null,
+		rightNavchildren: null,
+		centerComponent: null,
 	},
 	"/dashboard/news-articles": {
 		rightNavHeaderComponent: null,
@@ -40,10 +47,16 @@ const dashboardRoutes = {
 
 const Dashboard = () => {
 	const { isRefferalSubmitted } = useRefferal();
+	const [isUpgraded, setIsUpgraded] = useState(true);
 	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
 	const currentRoute = dashboardRoutes[location.pathname];
 
-	// Determine which component to show based on isRefferalSubmitted
+	// Check for topic and lesson query parameters
+	const hasTopicAndLesson =
+		queryParams.has("topic") && queryParams.has("lesson");
+
+	// Determine the center component to render
 	const CenterComponent =
 		location.pathname === "/dashboard/referral-program" ? (
 			isRefferalSubmitted ? (
@@ -51,12 +64,32 @@ const Dashboard = () => {
 			) : (
 				<ReferralProgram />
 			)
+		) : location.pathname ===
+		  "/dashboard/mercury-ai-pro-advance-training-course" ? (
+			hasTopicAndLesson ? (
+				<CourseTopic />
+			) : (
+				<AdvanceTrainingCourseModule
+					isUpgraded={isUpgraded}
+					setIsUpgraded={setIsUpgraded}
+				/>
+			)
 		) : (
 			currentRoute?.centerComponent
 		);
 
-	const RightNavHeaderComponent = currentRoute?.rightNavHeaderComponent;
-	const RightNavChildren = currentRoute?.rightNavchildren;
+	// Determine the right navigation content
+	const RightNavChildren =
+		location.pathname ===
+		"/dashboard/mercury-ai-pro-advance-training-course" ? (
+			<AdvanceCourseSidebar
+				isUpgraded={isUpgraded}
+				setIsUpgraded={setIsUpgraded}
+				location={location}
+			/>
+		) : (
+			currentRoute?.rightNavchildren
+		);
 
 	return (
 		<Layout
@@ -64,9 +97,9 @@ const Dashboard = () => {
 			leftNavFooterButton={{ label: "Effettua subito l’upgrade" }}
 			leftNavchildren={<DashboardSideNav currentRoute={location.pathname} />}
 			rightNavHeaderComponent={
-				RightNavHeaderComponent && (
+				currentRoute?.rightNavHeaderComponent && (
 					<Suspense fallback={<div>Loading...</div>}>
-						{RightNavHeaderComponent}
+						{currentRoute.rightNavHeaderComponent}
 					</Suspense>
 				)
 			}
