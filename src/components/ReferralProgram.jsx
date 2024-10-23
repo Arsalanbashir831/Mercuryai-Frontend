@@ -12,7 +12,6 @@ import {
 import RefferalForm from "./RefferalForm";
 import VideoPlayer from "./VideoPlayer";
 import { useRefferal } from "../context/RefferalContext";
-import { use } from "framer-motion/client";
 
 const StepCard = ({ image, step }) => (
 	<Box textAlign='center'>

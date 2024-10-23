@@ -4,8 +4,8 @@ import { useRefferal } from "../context/RefferalContext";
 import Layout from "../layout/Layout";
 import DashboardSideNav from "../components/DashboardSideNav";
 
-const CourseModuleList = lazy(() => import("../components/CourseModuleList"));
 const CourseProgressBar = lazy(() => import("../components/CourseProgressBar"));
+const CourseModuleList = lazy(() => import("../components/CourseModuleList"));
 const TrainingCourseModule = lazy(() =>
 	import("../components/TrainingCourseModule")
 );

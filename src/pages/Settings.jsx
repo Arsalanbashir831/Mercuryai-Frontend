@@ -2,17 +2,11 @@ import { lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../layout/Layout";
 import { useRefferal } from "../context/RefferalContext";
-import AccountSettings from "../components/AccountSettings";
 import AmazonSellerApi from "../components/AmazonSellerApi";
 import PaymentManagement from "../components/PaymentManagement";
+import SettingsSideNav from "../components/SettingsSideNav";
 
-const CourseModuleList = lazy(() => import("../components/CourseModuleList"));
-const CourseProgressBar = lazy(() => import("../components/CourseProgressBar"));
-const SettingsSideNav = lazy(() => import("../components/SettingsSideNav"));
-const TrainingCourseModule = lazy(() =>
-	import("../components/TrainingCourseModule")
-);
-const NewsArticles = lazy(() => import("../components/NewsArticles"));
+const AccountSettings = lazy(() => import("../components/AccountSettings"));
 const ReferralProgram = lazy(() => import("../components/ReferralProgram"));
 const AffiliateDashboard = lazy(() =>
 	import("../components/AffiliateDashboard")
