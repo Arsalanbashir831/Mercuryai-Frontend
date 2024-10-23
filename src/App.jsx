@@ -10,10 +10,7 @@ import Settings from "./pages/Settings";
 const App = () => {
 	const theme = useTheme();
 
-	const bgColor = useColorModeValue(
-		theme.colors.bgColor.dark,
-		theme.colors.bgColor.light
-	);
+	const bgColor = theme.colors.bgColor.dark;
 
 	return (
 		<Flex direction='column' height='100vh' overflow='hidden' bg={bgColor}>

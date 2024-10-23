@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
-import Layout from "../layout/Layout";
 import { useRefferal } from "../context/RefferalContext";
+import Layout from "../layout/Layout";
+import DashboardSideNav from "../components/DashboardSideNav";
 
 const CourseModuleList = lazy(() => import("../components/CourseModuleList"));
 const CourseProgressBar = lazy(() => import("../components/CourseProgressBar"));
-const DashboardSideNav = lazy(() => import("../components/DashboardSideNav"));
 const TrainingCourseModule = lazy(() =>
 	import("../components/TrainingCourseModule")
 );
