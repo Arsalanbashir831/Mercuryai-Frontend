@@ -17,10 +17,10 @@ import {
 import { Icon } from "@iconify/react";
 
 const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
-	const menuBgColor = useColorModeValue("gray.800", "white");
-	const menuItemColor = useColorModeValue("white", "gray.800");
-	const menuHoverBgColor = useColorModeValue("gray.700", "gray.100");
-	const textColor = useColorModeValue("white", "gray.800");
+	const menuBgColor = "gray.800";
+	const menuItemColor = "white";
+	const menuHoverBgColor = "gray.700";
+	const textColor = "white";
 
 	return (
 		<Menu>

@@ -28,8 +28,8 @@ const AccountSettings = () => {
 
 	const [isEditing, setIsEditing] = useState(false);
 
-	const bgColor = useColorModeValue("gray.800", "white");
-	const borderColor = useColorModeValue("gray.700", "gray.200");
+	const bgColor = "gray.800";
+	const borderColor = "gray.700";
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;

@@ -46,11 +46,11 @@ const automatedResponses = [
 ];
 
 const ChatArea = () => {
-	const bgColor = useColorModeValue("gray.900", "gray.100");
-	const textColor = useColorModeValue("white", "gray.800");
-	const menuBgColor = useColorModeValue("gray.800", "white");
-	const menuItemColor = useColorModeValue("white", "gray.800");
-	const menuHoverBgColor = useColorModeValue("gray.700", "gray.100");
+	const bgColor = "gray.900";
+	const textColor = "white";
+	const menuBgColor = "gray.800";
+	const menuItemColor = "white";
+	const menuHoverBgColor = "gray.700";
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState([]);

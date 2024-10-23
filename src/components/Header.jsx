@@ -63,13 +63,13 @@ const Header = () => {
 	const { isAuthenticated, login, logout } = useAuth();
 	const { colorMode, toggleColorMode } = useColorMode();
 
-	const bgColor = useColorModeValue("gray.900", "gray.100");
-	const textColor = useColorModeValue("white", "gray.800");
-	const iconColor = useColorModeValue("blue.300", "blue.500");
-	const menuBgColor = useColorModeValue("gray.800", "white");
-	const menuItemColor = useColorModeValue("white", "gray.800");
-	const menuHoverBgColor = useColorModeValue("gray.700", "gray.100");
-	const dividerColor = useColorModeValue("gray.600", "gray.200");
+	const bgColor = "gray.900";
+	const textColor = "white";
+	const iconColor = "blue.300";
+	const menuBgColor = "gray.800";
+	const menuItemColor = "white";
+	const menuHoverBgColor = "gray.700";
+	const dividerColor = "gray.600";
 
 	const [isOpen, setIsOpen] = useState({
 		userMenu: false,

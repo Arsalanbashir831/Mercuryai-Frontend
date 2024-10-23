@@ -28,9 +28,9 @@ import { Icon } from "@iconify/react";
 import logoSrc from "/logo.png";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
-	const bgColor = useColorModeValue("gray.900", "gray.100");
-	const textColor = useColorModeValue("white", "gray.800");
-	const inputBgColor = useColorModeValue("gray.700", "white");
+	const bgColor = "gray.900";
+	const textColor = "white";
+	const inputBgColor = "gray.700";
 
 	// State to manage the current step
 	const [step, setStep] = useState(1);
