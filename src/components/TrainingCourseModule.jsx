@@ -11,6 +11,7 @@ import {
 	Progress,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
+import VideoPlayer from "./VideoPlayer";
 
 const TrainingCourseModule = () => {
 	const [isPlaying, setIsPlaying] = React.useState(false);
@@ -140,74 +141,18 @@ const TrainingCourseModule = () => {
 				</Heading>
 
 				{/* Scrollable Video Player Card */}
-				<Box bg='gray.800' borderRadius='lg' overflow='hidden' mb={6}>
-					<Box position='relative'>
-						<Image
-							src='https://via.placeholder.com/800x650'
-							alt='Video thumbnail'
-							w='full'
-							h='auto'
-							aspectRatio={16 / 9}
-							objectFit='cover'
-						/>
-
-						{/* Progress Bar */}
-						<Progress
-							value={33}
-							size='xs'
-							colorScheme='blue'
-							position='absolute'
-							bottom={0}
-							left={0}
-							right={0}
-						/>
-					</Box>
-
-					{/* Video Controls */}
-					<Flex justify='center' alignItems='center' p={4} gap={4}>
-						<IconButton
-							icon={<Icon icon='mdi:rewind' width='24' height='24' />}
-							variant='ghost'
-							color='gray.400'
-							aria-label='Rewind'
-							_hover={{ color: "white" }}
-						/>
-
-						<IconButton
-							icon={
-								<Icon
-									icon={isPlaying ? "mdi:pause-circle" : "mdi:play-circle"}
-									width='32'
-									height='32'
-								/>
-							}
-							variant='ghost'
-							color='white'
-							aria-label={isPlaying ? "Pause" : "Play"}
-							onClick={handlePlayPause}
-							_hover={{ color: "blue.400" }}
-						/>
-
-						<IconButton
-							icon={<Icon icon='mdi:fast-forward' width='24' height='24' />}
-							variant='ghost'
-							color='gray.400'
-							aria-label='Fast forward'
-							_hover={{ color: "white" }}
-						/>
-					</Flex>
-				</Box>
+				<VideoPlayer />
 
 				{/* Bottom Buttons */}
 				<Flex justify='space-between' alignItems='center'>
 					<VStack spacing={2}>
 						<Box color='gray.400'>AI Summary - Useful Links</Box>
-						<Button bg='cyan.400' color='white' _hover={{ bg: "cyan.500" }}>
+						<Button bg='blue.400' color='white' _hover={{ bg: "blue.500" }}>
 							Generate Summary
 						</Button>
 					</VStack>
 
-					<Button bg='cyan.400' color='white' _hover={{ bg: "cyan.500" }}>
+					<Button bg='blue.400' color='white' _hover={{ bg: "blue.500" }}>
 						Take Test
 					</Button>
 				</Flex>

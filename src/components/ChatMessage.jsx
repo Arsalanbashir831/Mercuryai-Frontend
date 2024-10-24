@@ -7,7 +7,7 @@ const ChatMessage = ({ message, isUser }) => (
 		p={4}
 		maxWidth='100%'
 		alignItems='center'>
-		{!isUser && <Avatar size='sm' mr={2} src='/path/to/ai-avatar.png' />}
+		{!isUser && <Avatar size='xs' src='/favicon.png' />}
 		<Box
 			bg={isUser ? "blue.500" : "transparent"}
 			color='white'

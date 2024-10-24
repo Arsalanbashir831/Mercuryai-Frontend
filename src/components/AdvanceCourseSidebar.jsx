@@ -35,7 +35,7 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 					<Text fontSize='sm' textColor='white'>
 						Nome Cliente
 					</Text>
-					<Text fontSize='xs' color='cyan.400'>
+					<Text fontSize='xs' color='blue.400'>
 						0% COMPLETE
 					</Text>
 				</Box>

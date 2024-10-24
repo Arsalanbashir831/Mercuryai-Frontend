@@ -115,8 +115,8 @@ const SubscriptionTable = () => {
 						<Button
 							size='sm'
 							variant='outline'
-							color='cyan.400'
-							borderColor='cyan.400'
+							color='blue.400'
+							borderColor='blue.400'
 							borderRadius='full'
 							_hover={{ bg: "transparent" }}>
 							10% Annual Off
@@ -178,7 +178,7 @@ const SubscriptionTable = () => {
 												top='-10'
 												left='12'
 												size='sm'
-												bg='cyan.400'
+												bg='blue.400'
 												color='white'
 												borderRadius='full'
 												borderEndStartRadius={0}
@@ -187,14 +187,14 @@ const SubscriptionTable = () => {
 											</Button>
 										)}
 										<Button
-											bg={plan.popular ? "cyan.400" : "transparent"}
+											bg={plan.popular ? "blue.400" : "transparent"}
 											color='white'
 											borderColor={!plan.popular ? "white" : "transparent"}
 											variant={!plan.popular ? "outline" : "solid"}
 											w='full'
 											onClick={() => setCurrentPlan(plan.value)}
 											_hover={{
-												bg: plan.popular ? "cyan.500" : "whiteAlpha.200",
+												bg: plan.popular ? "blue.500" : "whiteAlpha.200",
 											}}>
 											Choose This Plan
 										</Button>

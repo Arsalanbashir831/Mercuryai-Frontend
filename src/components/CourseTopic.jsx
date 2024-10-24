@@ -78,7 +78,7 @@ const CourseTopic = () => {
 						<Heading size='md' color='white'>
 							Summary AI
 						</Heading>
-						<Button colorScheme='cyan'>Generate Summary</Button>
+						<Button colorScheme='blue'>Generate Summary</Button>
 					</Flex>
 				</Card>
 			</VStack>

@@ -23,6 +23,7 @@ import LoginModal from "./LoginModal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logoSrc from "/logo.png";
+import placeholderImage from "../assets/placeholders/200x150.svg";
 import { link } from "framer-motion/client";
 
 const languageMenuItems = [
@@ -62,7 +63,11 @@ const userMenuItems = [
 		label: "Payment Management",
 		link: "/settings/payment-management",
 	},
-	{ icon: "mdi:help-circle-outline", label: "Help & Contacts" },
+	{
+		icon: "mdi:help-circle-outline",
+		label: "Help & Contacts",
+		link: "/contact-support",
+	},
 	{
 		icon: "mdi:account-multiple-outline",
 		label: "Affiliation",
@@ -79,7 +84,7 @@ const notifications = [
 	{
 		title: "Latest News",
 		message: "Our new product feature is live now!",
-		image: "https://via.placeholder.com/250x150",
+		image: placeholderImage,
 		link: "#",
 	},
 ];

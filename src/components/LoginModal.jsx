@@ -26,11 +26,14 @@ import {
 import { Icon } from "@iconify/react";
 
 import logoSrc from "/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
 	const bgColor = "gray.900";
 	const textColor = "white";
 	const inputBgColor = "gray.700";
+
+	const navigate = useNavigate();
 
 	// State to manage the current step
 	const [step, setStep] = useState(1);
@@ -282,7 +285,15 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 								</Link>
 							</Text>
 							<Text mt={2} fontWeight='light' fontSize={10}>
-								Problems or questions? <Link color='blue.300'>Contact Us</Link>
+								Problems or questions?{" "}
+								<Link
+									color='blue.300'
+									onClick={() => {
+										onClose();
+										navigate("/contact-support");
+									}}>
+									Contact Us
+								</Link>
 							</Text>
 						</>
 					)}

@@ -58,6 +58,8 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 										src={notification.image}
 										alt='Notification Image'
 										mb={2}
+										w='100%'
+										objectFit='cover'
 									/>
 								)}
 								<Text fontSize='sm' mb={2}>
@@ -68,7 +70,8 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 										size='sm'
 										variant='link'
 										color='blue.400'
-										onClick={() => window.open(notification.link, "_blank")}>
+										// onClick={() => window.open(notification.link, "_blank")}
+									>
 										Read More
 									</Button>
 								)}

@@ -14,6 +14,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
+import placeholderImage from "../assets/placeholders/600x400.svg";
 
 const NewsCard = ({ title, description }) => (
 	<Box
@@ -22,8 +23,14 @@ const NewsCard = ({ title, description }) => (
 		overflow='hidden'
 		position='relative'
 		_hover={{ transform: "translateY(-2px)", transition: "transform 0.2s" }}>
-		<Box bg='lightblue' h='150px' position='relative'>
-			<Image src='https://via.placeholder.com/400x200' alt='News Article' />
+		<Box bg='lightblue' position='relative' maxH='200px' overflow='hidden'>
+			<Image
+				src={placeholderImage}
+				alt='News Article'
+				w='100%'
+				h='200px'
+				objectFit='cover' // Ensures the image fits within the box
+			/>
 		</Box>
 		<Box p={4}>
 			<Heading size='sm' color='white' mb={2}>
@@ -32,7 +39,7 @@ const NewsCard = ({ title, description }) => (
 			<Text color='gray.300' fontSize='sm' mb={3}>
 				{description}
 			</Text>
-			<Button size='sm' colorScheme='cyan' borderRadius='full'>
+			<Button size='sm' colorScheme='blue' borderRadius='full'>
 				Read More
 			</Button>
 		</Box>
@@ -135,7 +142,7 @@ const NewsArticles = () => {
 										{item.description}
 									</Text>
 									<Button
-										colorScheme='cyan'
+										colorScheme='blue'
 										size='sm'
 										borderRadius='full'
 										float='right'>

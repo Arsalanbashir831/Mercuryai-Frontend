@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
+import placeholderImage from "../assets/placeholders/200x150.svg";
 
 const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 	return (
@@ -59,7 +60,7 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 				<Text color='white' mb={2}>
 					Skills You Will Gain
 				</Text>
-				<HStack spacing={4}>
+				<HStack spacing={4} justifyContent='space-between'>
 					{[1, 2, 3, 4, 5, 6, 7].map((skill) => (
 						<Box key={skill}>
 							<Box bg='blue.500' p={2} borderRadius='full'>
@@ -121,10 +122,11 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 							Access the dedicated Elite student group
 						</Text>
 						<Image
-							src='https://placehold.co/200x100'
+							src={placeholderImage}
 							alt='Elite student group'
 							w='100%'
 							h={100}
+							objectFit='cover'
 						/>
 						<Button
 							colorScheme='gray'

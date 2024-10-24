@@ -12,11 +12,12 @@ import {
 import RefferalForm from "./RefferalForm";
 import VideoPlayer from "./VideoPlayer";
 import { useRefferal } from "../context/RefferalContext";
+import placeholderImage from "../assets/placeholders/200x150.svg";
 
 const StepCard = ({ image, step }) => (
 	<Box textAlign='center'>
 		<Image
-			src={image || `https://via.placeholder.com/150?text=Step+${step}`}
+			src={image || `https://placehold.co/150?text=Step+${step}`}
 			alt={`Step ${step}`}
 			borderRadius='md'
 			mb={2}
@@ -79,7 +80,7 @@ const ReferralProgram = () => {
 
 						<Grid templateColumns='repeat(3, 1fr)' gap={4}>
 							{[1, 2, 3].map((step) => (
-								<StepCard key={step} step={step} />
+								<StepCard key={step} step={step} image={placeholderImage} />
 							))}
 						</Grid>
 					</Box>

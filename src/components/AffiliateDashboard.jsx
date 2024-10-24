@@ -19,14 +19,14 @@ import {
 	ModalHeader,
 	ModalCloseButton,
 	ModalBody,
-	AspectRatio,
 	useDisclosure,
+	Flex,
 } from "@chakra-ui/react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
 import { Icon } from "@iconify/react";
 import RefferalForm from "./RefferalForm";
 import ContactSupportModal from "./ContactSupportModal";
 import VideoPlayer from "./VideoPlayer";
+import ResponsiveLineChart from "./ResponsiveLineChart";
 
 const chartData = [
 	{ name: "Elemento 1", value: 20 },
@@ -102,13 +102,13 @@ const AffiliateDashboard = () => {
 							Referral Program
 						</Text>
 						<HStack spacing={4}>
-							<Button colorScheme='cyan' onClick={onSupportOpen}>
+							<Button colorScheme='blue' onClick={onSupportOpen}>
 								Contact Support
 							</Button>
-							<Button colorScheme='cyan' onClick={onAffiliateSettingOpen}>
+							<Button colorScheme='blue' onClick={onAffiliateSettingOpen}>
 								Affiliate Settings
 							</Button>
-							<Button colorScheme='cyan' onClick={onVideoOpen}>
+							<Button colorScheme='blue' onClick={onVideoOpen}>
 								Training Videos
 							</Button>
 						</HStack>
@@ -154,7 +154,7 @@ const AffiliateDashboard = () => {
 									<Text color='white' fontSize='sm' isTruncated maxW='200px'>
 										{affiliateLink}
 									</Text>
-									<Button size='sm' onClick={onCopy} colorScheme='cyan'>
+									<Button size='sm' onClick={onCopy} colorScheme='blue'>
 										<Icon icon='bi:clipboard' />
 									</Button>
 								</HStack>
@@ -165,26 +165,64 @@ const AffiliateDashboard = () => {
 						<Grid
 							templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
 							gap={4}>
-							<Box bg='gray.800' p={4} borderRadius='lg'>
+							<Flex
+								direction='column'
+								justifyContent='center'
+								bg='gray.800'
+								p={4}
+								borderRadius='lg'>
+								<Box
+									bg='blue.500'
+									borderRadius='full'
+									w='15'
+									mx='auto'
+									p={2}
+									mb={3}>
+									<Icon
+										icon='vaadin:cash'
+										color='white'
+										width='42'
+										height='42'
+									/>
+								</Box>
 								<Text color='white' textAlign='center'>
 									Cash in
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center'>
+								<Text color='white' fontSize='2xl' textAlign='center' mb={9}>
 									1000$
 								</Text>
-							</Box>
+							</Flex>
 
-							<Box bg='gray.800' p={4} borderRadius='lg'>
+							<Flex
+								direction='column'
+								justifyContent='center'
+								bg='gray.800'
+								p={4}
+								borderRadius='lg'>
+								<Box
+									bg='blue.500'
+									borderRadius='full'
+									w='15'
+									mx='auto'
+									p={2}
+									mb={3}>
+									<Icon
+										icon='game-icons:cash'
+										color='white'
+										width='42'
+										height='42'
+									/>
+								</Box>
 								<Text color='white' textAlign='center'>
 									Balance to Request
 								</Text>
 								<Text color='white' fontSize='2xl' textAlign='center'>
 									100$
 								</Text>
-								<Button colorScheme='cyan' size='sm' width='full' mt={2}>
+								<Button colorScheme='blue' size='sm' width='full' mt={2}>
 									Request Balance
 								</Button>
-							</Box>
+							</Flex>
 
 							<Box bg='gray.800' p={4} borderRadius='lg'>
 								<Text color='white' mb={2}>
@@ -219,20 +257,7 @@ const AffiliateDashboard = () => {
 						</Grid>
 
 						{/* Chart */}
-						<Box bg='gray.800' p={4} borderRadius='lg' overflowX='auto'>
-							<LineChart width={800} height={200} data={chartData}>
-								<CartesianGrid strokeDasharray='3 3' stroke='#444' />
-								<XAxis dataKey='name' stroke='#fff' />
-								<YAxis stroke='#fff' />
-								<Line
-									type='monotone'
-									dataKey='value'
-									stroke='#4FD1C5'
-									strokeWidth={2}
-									dot={{ fill: "#4FD1C5" }}
-								/>
-							</LineChart>
-						</Box>
+						<ResponsiveLineChart chartData={chartData} />
 
 						{/* Clients Table */}
 						<Box bg='gray.800' p={4} borderRadius='lg' overflowX='auto'>
@@ -275,25 +300,6 @@ const AffiliateDashboard = () => {
 					<ModalHeader>Training Videos</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
-						{/* <AspectRatio ratio={16 / 9}>
-							<Box
-								as='video'
-								controls
-								src='https://via.placeholder.com/1280x720'
-								objectFit='contain'
-								sx={{
-									"&::-webkit-media-controls-panel": {
-										bg: "gray.700",
-									},
-									"&::-webkit-media-controls-play-button": {
-										color: "cyan.500",
-									},
-									"&::-webkit-media-controls-timeline": {
-										color: "cyan.500",
-									},
-								}}
-							/>
-						</AspectRatio> */}
 						<VideoPlayer />
 					</ModalBody>
 				</ModalContent>

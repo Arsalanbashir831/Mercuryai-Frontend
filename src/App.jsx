@@ -2,10 +2,16 @@ import { Routes, Route } from "react-router-dom";
 import { Box, Flex, useColorModeValue, useTheme } from "@chakra-ui/react";
 import Header from "./components/Header";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
+import HomePage from "./pages/HomePage";
+import ContactSupportPage from "./pages/ContactSupportPage";
+import TrainingCoursePage from "./pages/TrainingCoursePage";
+import NewsArticlePage from "./pages/NewsArticlePage";
+import AdvancedTrainingCoursePage from "./pages/AdvancedTrainingCoursePage";
+import RefferalProgramPage from "./pages/RefferalProgramPage";
+import AccountPage from "./pages/AccountPage";
+import AmazonSellerApiPage from "./pages/AmazonSellerApiPage";
+import PaymentManagementPage from "./pages/PaymentManagementPage";
+import SubscriptionPage from "./pages/SubcriptionPage";
 
 const App = () => {
 	const theme = useTheme();
@@ -17,22 +23,34 @@ const App = () => {
 			<Header />
 			<Box as='main' flex='1' overflow='hidden'>
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path='/' element={<HomePage />} />
 					<Route
 						path='/dashboard/mercury-ai-training-course'
-						element={<Dashboard />}
+						element={<TrainingCoursePage />}
 					/>
 					<Route
 						path='/dashboard/mercury-ai-pro-advance-training-course'
-						element={<Dashboard />}
+						element={<AdvancedTrainingCoursePage />}
 					/>
-					<Route path='/dashboard/news-articles' element={<Dashboard />} />
-					<Route path='/dashboard/referral-program' element={<Dashboard />} />
-					<Route path='/settings/account' element={<Settings />} />
-					<Route path='/settings/amazon-api' element={<Settings />} />
-					<Route path='/settings/payment-management' element={<Settings />} />
-					<Route path='/settings/subscription' element={<Settings />} />
-					<Route path='/about' element={<About />} />
+					<Route
+						path='/dashboard/news-articles'
+						element={<NewsArticlePage />}
+					/>
+					<Route
+						path='/dashboard/referral-program'
+						element={<RefferalProgramPage />}
+					/>
+					<Route path='/settings/account' element={<AccountPage />} />
+					<Route
+						path='/settings/amazon-api'
+						element={<AmazonSellerApiPage />}
+					/>
+					<Route
+						path='/settings/payment-management'
+						element={<PaymentManagementPage />}
+					/>
+					<Route path='/settings/subscription' element={<SubscriptionPage />} />
+					<Route path='/contact-support' element={<ContactSupportPage />} />
 				</Routes>
 			</Box>
 		</Flex>
