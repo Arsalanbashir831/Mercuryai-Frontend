@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Box, Flex, useColorModeValue, useTheme } from "@chakra-ui/react";
-import Header from "./components/Header";
+import Header from "./layout/Header";
 
 import HomePage from "./pages/HomePage";
 import ContactSupportPage from "./pages/ContactSupportPage";

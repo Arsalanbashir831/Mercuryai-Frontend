@@ -27,6 +27,7 @@ import { Icon } from "@iconify/react";
 
 import logoSrc from "/logo.png";
 import { useNavigate } from "react-router-dom";
+import PlanSelectionTable from "./PlanSelectionTable";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
 	const bgColor = "gray.900";
@@ -45,6 +46,8 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 	const skipStep = () => setStep((prev) => prev + 1);
 
 	const loginStep = () => setStep(1);
+
+	const [optionSelected, setOptionSelected] = useState(null);
 
 	return (
 		<Modal
@@ -166,88 +169,100 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 								variant='unstyled'
 								bg='gray.800'
 								color='white'
+								outline={
+									optionSelected === "individual" && "2px solid lightblue"
+								}
 								mr={3}
 								mb={2}
-								width='100%'>
+								width='100%'
+								onClick={() => setOptionSelected("individual")}>
 								Individual Seller
 							</Button>
 							<Button
 								variant='unstyled'
 								bg='gray.800'
 								color='white'
+								outline={optionSelected === "brand" && "2px solid lightblue"}
 								mr={3}
 								mb={2}
-								width='100%'>
+								width='100%'
+								onClick={() => setOptionSelected("brand")}>
 								Brand
 							</Button>
 							<Button
 								variant='unstyled'
 								bg='gray.800'
 								color='white'
+								outline={
+									optionSelected === "not-started" && "2px solid lightblue"
+								}
 								mr={3}
 								mb={2}
-								width='100%'>
+								width='100%'
+								onClick={() => setOptionSelected("not-started")}>
 								I have not yet started selling online.
 							</Button>
 						</>
 					)}
 
 					{step === 4 && (
-						<>
-							<Table variant='simple'>
-								<Thead>
-									<Tr>
-										<Td>Features</Td>
-										<Td>Free</Td>
-										<Td>Basic</Td>
-										<Td>Pro Advanced</Td>
-									</Tr>
-								</Thead>
-								<Tbody>
-									<Tr>
-										<Td>Price</Td>
-										<Td>$9.99 / mo</Td>
-										<Td>$19.99 / mo</Td>
-										<Td>$97.99 / mo</Td>
-									</Tr>
-									<Tr>
-										<Td>Mercury Ai Chat</Td>
-										<Td>Limited</Td>
-										<Td>Unlimited</Td>
-										<Td>Unlimited</Td>
-									</Tr>
-									<Tr>
-										<Td>Mercury Training for Your Business Success</Td>
-										<Td>Limited</Td>
-										<Td>Limited</Td>
-										<Td>Unlimited</Td>
-									</Tr>
-									<Tr>
-										<Td>Amazon Seller and Amazon Advertising API Access</Td>
-										<Td>X</Td>
-										<Td>X</Td>
-										<Td>✓</Td>
-									</Tr>
-									<Tr>
-										<Td></Td>
-										<Td>
-											<Checkbox></Checkbox>
-										</Td>
-										<Td>
-											<Checkbox></Checkbox>
-										</Td>
-										<Td>
-											<Checkbox></Checkbox>
-										</Td>
-									</Tr>
-								</Tbody>
-							</Table>
-							<Text mt={4} mb={2} textAlign='center'>
-								<Link color='blue.300' textDecoration='underline'>
-									Find out more on the dedicated page later
-								</Link>
-							</Text>
-						</>
+						// <>
+						// 	<Table variant='simple'>
+						// 		<Thead>
+						// 			<Tr>
+						// 				<Td>Features</Td>
+						// 				<Td>Free</Td>
+						// 				<Td>Basic</Td>
+						// 				<Td>Pro Advanced</Td>
+						// 			</Tr>
+						// 		</Thead>
+						// 		<Tbody>
+						// 			<Tr>
+						// 				<Td>Price</Td>
+						// 				<Td>$9.99 / mo</Td>
+						// 				<Td>$19.99 / mo</Td>
+						// 				<Td>$97.99 / mo</Td>
+						// 			</Tr>
+						// 			<Tr>
+						// 				<Td>Mercury Ai Chat</Td>
+						// 				<Td>Limited</Td>
+						// 				<Td>Unlimited</Td>
+						// 				<Td>Unlimited</Td>
+						// 			</Tr>
+						// 			<Tr>
+						// 				<Td>Mercury Training for Your Business Success</Td>
+						// 				<Td>Limited</Td>
+						// 				<Td>Limited</Td>
+						// 				<Td>Unlimited</Td>
+						// 			</Tr>
+						// 			<Tr>
+						// 				<Td>Amazon Seller and Amazon Advertising API Access</Td>
+						// 				<Td>X</Td>
+						// 				<Td>X</Td>
+						// 				<Td>✓</Td>
+						// 			</Tr>
+						// 			<Tr>
+						// 				<Td></Td>
+						// 				<Td>
+						// 					<Checkbox></Checkbox>
+						// 				</Td>
+						// 				<Td>
+						// 					<Checkbox></Checkbox>
+						// 				</Td>
+						// 				<Td>
+						// 					<Checkbox></Checkbox>
+						// 				</Td>
+						// 			</Tr>
+						// 		</Tbody>
+						// 	</Table>
+						// 	<Text mt={4} mb={2} textAlign='center'>
+						// 		<Link color='blue.300' textDecoration='underline'>
+						// 			Find out more on the dedicated page later
+						// 		</Link>
+						// 	</Text>
+						// </>
+
+						<PlanSelectionTable />
 					)}
 
 					{step === 5 && (

@@ -17,9 +17,9 @@ import {
 	Switch,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import NotificationDropdown from "./NotificationDropdown";
+import NotificationDropdown from "../components/NotificationDropdown";
 import { useAuth } from "../context/AuthContext";
-import LoginModal from "./LoginModal";
+import LoginModal from "../components/LoginModal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logoSrc from "/logo.png";
