@@ -8,10 +8,11 @@ import {
 	useDisclosure,
 } from "@chakra-ui/react";
 import { useAuth } from "../context/AuthContext";
-import { Icon } from "@iconify/react";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
 import LoginModal from "../components/LoginModal";
+import LoginForm from "../components/LoginForm";
+import { header } from "framer-motion/client";
 
 const Layout = ({
 	leftNavchildren,
@@ -22,9 +23,9 @@ const Layout = ({
 	rightNavHeaderComponent,
 	rightNavHeaderButton,
 	centerComponent,
+	headerComponent,
 }) => {
 	const { isAuthenticated, login } = useAuth();
-	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
 		<Flex height='100%' overflow='hidden' position='relative'>
@@ -37,9 +38,16 @@ const Layout = ({
 				</LeftSidebar>
 			)}
 
-			<Box as='main' flex='1' overflow='hidden'>
-				{centerComponent}
-			</Box>
+			<Flex flex='1' flexDirection='column' overflow='hidden'>
+				{headerComponent && (
+					<Box as='header' pt={4} zIndex='1'>
+						{headerComponent}
+					</Box>
+				)}
+				<Box as='main' flex='1' overflow='hidden' mb={4}>
+					{centerComponent}
+				</Box>
+			</Flex>
 			{rightNavchildren && (
 				<RightSidebar
 					headerComponent={rightNavHeaderComponent}
@@ -58,67 +66,28 @@ const Layout = ({
 					bottom='0'
 					bg='blackAlpha.700'
 					backdropFilter='blur(10px)'
-					display='flex'
-					justifyContent='center'
-					alignItems='center'
 					color='white'
-					fontSize='2xl'
 					zIndex='10'
-				/>
+					pb={4}
+					overflowY='auto'
+					sx={{
+						"&::-webkit-scrollbar": {
+							width: "8px",
+						},
+						"&::-webkit-scrollbar-track": {
+							width: "6px",
+						},
+						"&::-webkit-scrollbar-thumb": {
+							background: "gray.700",
+							borderRadius: "full",
+						},
+					}}>
+					<LoginForm onLogin={login} />
+				</Box>
 			)}
 
 			{/* Lock icons on the sides */}
-			{!isAuthenticated && (
-				<>
-					<Box
-						position='absolute'
-						left='8%'
-						top='50%'
-						transform='translateY(-50%)'
-						zIndex='20'>
-						<Icon icon='si:lock-line' color='white' width='64' height='64' />
-					</Box>
-
-					<Box
-						position='absolute'
-						left='41%'
-						top='45%'
-						transform='translateY(-41%, -45%)'
-						zIndex='20'>
-						<VStack spacing={4}>
-							<Text fontSize='2xl' color='white'>
-								Please login to continue
-							</Text>
-
-							<Button
-								leftIcon={
-									<Icon
-										icon='ic:round-login'
-										color='white'
-										width='24'
-										height='24'
-									/>
-								}
-								colorScheme='blue'
-								size='lg'
-								onClick={onOpen}>
-								Login
-							</Button>
-						</VStack>
-					</Box>
-
-					<Box
-						position='absolute'
-						right='8%'
-						top='50%'
-						transform='translateY(-50%)'
-						zIndex='20'>
-						<Icon icon='si:lock-line' color='white' width='64' height='64' />
-					</Box>
-
-					<LoginModal isOpen={isOpen} onClose={onClose} onLogin={login} />
-				</>
-			)}
+			{/* {!isAuthenticated && <LoginModal isOpen={true} onLogin={login} />} */}
 		</Flex>
 	);
 };

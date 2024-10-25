@@ -13,9 +13,13 @@ import {
 	Heading,
 	Flex,
 	Image,
+	chakra,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import ribbonImg from "../assets/ribbon.png";
+import { AnimatePresence, motion } from "framer-motion";
+
+const MotionBox = motion(chakra.tr);
 
 // Plans Data
 const PLANS = [
@@ -42,16 +46,32 @@ const FEATURES = [
 		name: "Do the work on your Amazon account for you",
 		values: [false, false, true],
 	},
+	{ name: "Priority Customer Support", values: [false, true, true] }, // Extra row
+	{ name: "Exclusive Webinars", values: [false, false, true] }, // Extra row
+];
+
+// Additional Features Data
+const EXTRA_FEATURES = [
+	{ name: "24/7 Priority Support", values: [false, true, true] },
+	{ name: "Custom AI Training", values: [false, false, true] },
+	{ name: "Advanced Analytics Dashboard", values: [false, true, true] },
+	{ name: "Bulk Processing Tools", values: [false, true, true] },
+	{ name: "API Access", values: [false, false, true] },
 ];
 
 const SubscriptionTable = () => {
 	const [billingType, setBillingType] = useState("monthly");
 	const [currentPlan, setCurrentPlan] = useState("free");
+	const [showMore, setShowMore] = useState(false); // Track extra rows visibility
 
-	// Helper to get plan price based on billing type
 	const getPlanName = (plan) =>
 		billingType === "monthly" ? plan.name : plan.annualName;
 	const isSelected = (planValue) => currentPlan === planValue;
+
+	// Combine features based on showMore state
+	const displayedFeatures = showMore
+		? [...FEATURES, ...EXTRA_FEATURES]
+		: FEATURES;
 
 	return (
 		<Container
@@ -105,7 +125,7 @@ const SubscriptionTable = () => {
 				<Flex align='center' gap={4} mb={4} flexWrap='wrap'>
 					<Text color='white'>Monthly</Text>
 					<Switch
-						colorScheme='blue'
+						colorScheme='cyan'
 						onChange={(e) =>
 							setBillingType(e.target.checked ? "annually" : "monthly")
 						}
@@ -115,8 +135,8 @@ const SubscriptionTable = () => {
 						<Button
 							size='sm'
 							variant='outline'
-							color='blue.400'
-							borderColor='blue.400'
+							color='#40E0D0'
+							borderColor='#40E0D0'
 							borderRadius='full'
 							_hover={{ bg: "transparent" }}>
 							10% Annual Off
@@ -129,6 +149,7 @@ const SubscriptionTable = () => {
 			<Box borderRadius='md' border='1px solid' borderColor='white'>
 				<Table variant='simple' bg='rgb(27, 99, 129)' color='white'>
 					<Thead>
+						{/* Header row remains the same */}
 						<Tr>
 							<Td
 								borderWidth='1px'
@@ -158,8 +179,6 @@ const SubscriptionTable = () => {
 											display='flex'
 											alignItems='center'
 											gap={1}>
-											{/* MOST POPULAR
-											<Icon icon='emojione:trophy' /> */}
 											<Image src={ribbonImg} w={12} />
 										</Box>
 									)}
@@ -178,8 +197,11 @@ const SubscriptionTable = () => {
 												top='-10'
 												left='12'
 												size='sm'
-												bg='blue.400'
+												bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
 												color='white'
+												_hover={{
+													bg: "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)",
+												}}
 												borderRadius='full'
 												borderEndStartRadius={0}
 												mb={2}>
@@ -187,14 +209,20 @@ const SubscriptionTable = () => {
 											</Button>
 										)}
 										<Button
-											bg={plan.popular ? "blue.400" : "transparent"}
+											bg={
+												plan.popular
+													? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+													: "transparent"
+											}
 											color='white'
 											borderColor={!plan.popular ? "white" : "transparent"}
 											variant={!plan.popular ? "outline" : "solid"}
 											w='full'
 											onClick={() => setCurrentPlan(plan.value)}
 											_hover={{
-												bg: plan.popular ? "blue.500" : "whiteAlpha.200",
+												bg: plan.popular
+													? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+													: "whiteAlpha.200",
 											}}>
 											Choose This Plan
 										</Button>
@@ -204,27 +232,34 @@ const SubscriptionTable = () => {
 						</Tr>
 					</Thead>
 					<Tbody>
+						{/* Original Features */}
 						{FEATURES.map((feature, rowIndex) => (
 							<Tr key={feature.name}>
 								<Td borderWidth='1px' borderColor='white' whiteSpace='normal'>
 									{feature.name}
 								</Td>
 								{feature.values.map((value, colIndex) => {
+									const isSelectedColumn = isSelected(PLANS[colIndex].value);
 									const isLastRow = rowIndex === FEATURES.length - 1;
-									const isCurrentColumnSelected = isSelected(
-										PLANS[colIndex].value
-									);
 
 									return (
 										<Td
 											key={colIndex}
-											borderWidth={isCurrentColumnSelected ? "2px" : "1px"}
-											borderColor={isCurrentColumnSelected ? "yellow" : "white"}
-											borderTop='1px solid white'
-											borderBottom={
-												isLastRow && isCurrentColumnSelected
-													? "2px solid yellow"
-													: "1px solid white"
+											borderLeftWidth={isSelectedColumn ? "2px" : "1px"}
+											borderRightWidth={isSelectedColumn ? "2px" : "1px"}
+											borderLeftColor={isSelectedColumn ? "yellow" : "white"}
+											borderRightColor={isSelectedColumn ? "yellow" : "white"}
+											borderTopWidth='1px'
+											borderBottomWidth={
+												!showMore && isLastRow && isSelectedColumn
+													? "2px"
+													: "1px"
+											}
+											borderTopColor='white'
+											borderBottomColor={
+												!showMore && isLastRow && isSelectedColumn
+													? "yellow"
+													: "white"
 											}
 											whiteSpace='normal'>
 											{typeof value === "boolean" ? (
@@ -245,8 +280,96 @@ const SubscriptionTable = () => {
 								})}
 							</Tr>
 						))}
+
+						{/* Extra Features with Animation */}
+						<AnimatePresence>
+							{showMore &&
+								EXTRA_FEATURES.map((feature, rowIndex) => (
+									<MotionBox
+										key={feature.name}
+										as='tr'
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0, y: 20 }}
+										transition={{
+											duration: 0.3,
+											delay: rowIndex * 0.1,
+										}}
+										display='table-row'>
+										<Td
+											borderWidth='1px'
+											borderColor='white'
+											whiteSpace='normal'>
+											{feature.name}
+										</Td>
+										{feature.values.map((value, colIndex) => {
+											const isSelectedColumn = isSelected(
+												PLANS[colIndex].value
+											);
+											const isLastRow = rowIndex === EXTRA_FEATURES.length - 1;
+											return (
+												<Td
+													key={colIndex}
+													borderLeftWidth={isSelectedColumn ? "2px" : "1px"}
+													borderRightWidth={isSelectedColumn ? "2px" : "1px"}
+													borderLeftColor={
+														isSelectedColumn ? "yellow" : "white"
+													}
+													borderRightColor={
+														isSelectedColumn ? "yellow" : "white"
+													}
+													borderTopWidth='1px'
+													borderBottomWidth={
+														isLastRow && isSelectedColumn ? "2px" : "1px"
+													}
+													borderTopColor='white'
+													borderBottomColor={
+														isLastRow && isSelectedColumn ? "yellow" : "white"
+													}
+													whiteSpace='normal'>
+													{typeof value === "boolean" ? (
+														<Icon
+															icon={
+																value
+																	? "akar-icons:circle-check-fill"
+																	: "akar-icons:circle-x"
+															}
+															color={value ? "#4CAF50" : "#9E9E9E"}
+															width='24'
+														/>
+													) : (
+														value
+													)}
+												</Td>
+											);
+										})}
+									</MotionBox>
+								))}
+						</AnimatePresence>
 					</Tbody>
 				</Table>
+
+				{/* Show More Button */}
+				<Button
+					onClick={() => setShowMore(!showMore)}
+					w='full'
+					py={3}
+					bg='transparent'
+					color='white'
+					_hover={{ bg: "whiteAlpha.100" }}
+					borderTop='1px'
+					borderColor='white'
+					display='flex'
+					alignItems='center'
+					gap={2}>
+					{showMore ? "Show Less" : "Show More Features"}
+					<Icon
+						icon={
+							showMore ? "akar-icons:chevron-up" : "akar-icons:chevron-down"
+						}
+						width='20'
+					/>
+				</Button>
 			</Box>
 		</Container>
 	);

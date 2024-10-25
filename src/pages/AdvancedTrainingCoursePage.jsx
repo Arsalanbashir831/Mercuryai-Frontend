@@ -5,6 +5,7 @@ import CourseTopic from "../components/CourseTopic";
 import AdvanceTrainingCourseModule from "../components/AdvanceTrainingCourseModule";
 import { useState } from "react";
 import AdvanceCourseSidebar from "../components/AdvanceCourseSidebar";
+import AdvanceTrainingCourseModuleHeader from "../components/AdvanceTrainingCourseModuleHeader";
 
 const AdvancedTrainingCoursePage = () => {
 	const location = useLocation();
@@ -35,6 +36,9 @@ const AdvancedTrainingCoursePage = () => {
 						setIsUpgraded={setIsUpgraded}
 					/>
 				)
+			}
+			headerComponent={
+				hasTopicAndLesson ? null : <AdvanceTrainingCourseModuleHeader />
 			}
 		/>
 	);

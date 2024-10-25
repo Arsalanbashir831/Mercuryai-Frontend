@@ -39,11 +39,14 @@ export default function ChatLeftSideNav() {
 							py={1}
 							px={2}
 							color='white'
-							bg={selectedChat === chat.id ? "blue.500" : "transparent"}
+							bg={selectedChat === chat.id ? "whiteAlpha.200" : "transparent"}
 							_hover={{
-								bg: selectedChat === chat.id ? "blue.600" : "blue.500",
+								bg:
+									selectedChat === chat.id
+										? "whiteAlpha.200"
+										: "whiteAlpha.100",
 							}}
-							borderRadius='full'
+							borderRadius='md'
 							mb={1}
 							cursor='pointer'
 							onClick={() => handleChatClick(chat.id)}>

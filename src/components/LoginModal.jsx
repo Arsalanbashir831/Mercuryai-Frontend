@@ -205,65 +205,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 						</>
 					)}
 
-					{step === 4 && (
-						// <>
-						// 	<Table variant='simple'>
-						// 		<Thead>
-						// 			<Tr>
-						// 				<Td>Features</Td>
-						// 				<Td>Free</Td>
-						// 				<Td>Basic</Td>
-						// 				<Td>Pro Advanced</Td>
-						// 			</Tr>
-						// 		</Thead>
-						// 		<Tbody>
-						// 			<Tr>
-						// 				<Td>Price</Td>
-						// 				<Td>$9.99 / mo</Td>
-						// 				<Td>$19.99 / mo</Td>
-						// 				<Td>$97.99 / mo</Td>
-						// 			</Tr>
-						// 			<Tr>
-						// 				<Td>Mercury Ai Chat</Td>
-						// 				<Td>Limited</Td>
-						// 				<Td>Unlimited</Td>
-						// 				<Td>Unlimited</Td>
-						// 			</Tr>
-						// 			<Tr>
-						// 				<Td>Mercury Training for Your Business Success</Td>
-						// 				<Td>Limited</Td>
-						// 				<Td>Limited</Td>
-						// 				<Td>Unlimited</Td>
-						// 			</Tr>
-						// 			<Tr>
-						// 				<Td>Amazon Seller and Amazon Advertising API Access</Td>
-						// 				<Td>X</Td>
-						// 				<Td>X</Td>
-						// 				<Td>✓</Td>
-						// 			</Tr>
-						// 			<Tr>
-						// 				<Td></Td>
-						// 				<Td>
-						// 					<Checkbox></Checkbox>
-						// 				</Td>
-						// 				<Td>
-						// 					<Checkbox></Checkbox>
-						// 				</Td>
-						// 				<Td>
-						// 					<Checkbox></Checkbox>
-						// 				</Td>
-						// 			</Tr>
-						// 		</Tbody>
-						// 	</Table>
-						// 	<Text mt={4} mb={2} textAlign='center'>
-						// 		<Link color='blue.300' textDecoration='underline'>
-						// 			Find out more on the dedicated page later
-						// 		</Link>
-						// 	</Text>
-						// </>
-
-						<PlanSelectionTable />
-					)}
+					{step === 4 && <PlanSelectionTable />}
 
 					{step === 5 && (
 						<Text fontSize='lg' textAlign='center'>

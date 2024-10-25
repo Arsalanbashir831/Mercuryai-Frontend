@@ -23,12 +23,19 @@ export default function CourseModuleList() {
 		<HStack
 			key={module.id}
 			p={3}
-			bg={selectedModule === module.id ? "blue.500" : "gray.700"}
+			bg={
+				selectedModule === module.id
+					? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+					: "gray.700"
+			}
 			borderRadius='md'
 			cursor='pointer'
 			transition='all 0.2s'
 			_hover={{
-				bg: selectedModule === module.id ? "blue.600" : "gray.600",
+				bg:
+					selectedModule === module.id
+						? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+						: "gray.600",
 			}}
 			onClick={() => handleSelectModule(module.id)}>
 			<Icon

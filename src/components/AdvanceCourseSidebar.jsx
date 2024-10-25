@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, VStack, Text, Flex, Button } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import CustomButton from "./CustomButton";
 
 const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 	const navigate = useNavigate();
@@ -35,7 +36,7 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 					<Text fontSize='sm' textColor='white'>
 						Nome Cliente
 					</Text>
-					<Text fontSize='xs' color='blue.400'>
+					<Text fontSize='xs' color='blue.200'>
 						0% COMPLETE
 					</Text>
 				</Box>
@@ -148,13 +149,18 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 					fontSize='2xl'
 					zIndex='10'>
 					<Icon icon='mdi:lock' width='64' height='64' />
-					<Button
+					{/* <Button
 						mt={4}
 						colorScheme='blue'
 						size='lg'
 						onClick={() => setIsUpgraded(false)}>
 						Unlock Course
-					</Button>
+					</Button> */}
+					<CustomButton
+						label='Unlock Course'
+						onClick={() => setIsUpgraded(false)}
+						w={40}
+					/>
 				</Box>
 			)}
 		</Box>

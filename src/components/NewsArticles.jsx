@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import placeholderImage from "../assets/placeholders/600x400.svg";
+import CustomButton from "./CustomButton";
 
 const NewsCard = ({ title, description }) => (
 	<Box
@@ -39,9 +40,7 @@ const NewsCard = ({ title, description }) => (
 			<Text color='gray.300' fontSize='sm' mb={3}>
 				{description}
 			</Text>
-			<Button size='sm' colorScheme='blue' borderRadius='full'>
-				Read More
-			</Button>
+			<CustomButton label='Read More' size='sm' borderRadius='full' w='auto' />
 		</Box>
 	</Box>
 );
@@ -141,13 +140,13 @@ const NewsArticles = () => {
 									<Text color='gray.300' mb={4}>
 										{item.description}
 									</Text>
-									<Button
-										colorScheme='blue'
+									<CustomButton
+										label='Read More'
 										size='sm'
 										borderRadius='full'
-										float='right'>
-										Read More
-									</Button>
+										float='right'
+										w='auto'
+									/>
 								</Box>
 							))}
 						</VStack>

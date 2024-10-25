@@ -1,5 +1,5 @@
-import { Box, Button, VStack, Flex } from "@chakra-ui/react";
-import { Icon } from "@iconify/react";
+import { Box, VStack, Flex } from "@chakra-ui/react";
+import CustomButton from "../components/CustomButton";
 
 const RightSidebar = ({ headerComponent, headerButton, children }) => {
 	return (
@@ -8,13 +8,11 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 
 			{headerButton && (
 				<Box p={4}>
-					<Button
-						leftIcon={<Icon icon={headerButton.icon} />}
-						colorScheme='blue'
-						width='100%'
-						onClick={headerButton.onClick}>
-						{headerButton.label}
-					</Button>
+					<CustomButton
+						label={headerButton.label}
+						leftIcon={headerButton.icon}
+						onClick={headerButton.onClick}
+					/>
 				</Box>
 			)}
 
@@ -22,6 +20,7 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 				flex={1}
 				overflowY='auto'
 				m={4}
+				ml={0}
 				mt={headerComponent || headerButton ? 0 : 4}
 				bg='blackAlpha.500'
 				borderRadius={10}>

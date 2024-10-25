@@ -25,3 +25,70 @@ export const groupChatsByDate = (chats) => {
 
 	return grouped;
 };
+
+export const languageMenuItems = [
+	{ label: "English - EN" },
+	{ label: "Deutsch - DE" },
+	{ label: "Español - ES" },
+	{ label: "Italiano - IT" },
+	{ label: "Francese - FR" },
+	{ label: "中文 - ZH" },
+];
+
+export const userMenuItems = [
+	{ icon: "mdi:account", label: "Account", link: "/settings/account" },
+	{ icon: "mdi:settings", label: "Settings" },
+	{
+		icon: "iconoir:bell-notification-solid",
+		label: "News & Updates",
+		link: "/dashboard/news-articles",
+	},
+	{
+		icon: "mdi:paper-edit-outline",
+		label: "Subscription",
+		link: "/settings/subscription",
+	},
+	{
+		icon: "file-icons:moleculer",
+		label: "Amazon API",
+		link: "/settings/amazon-api",
+	},
+	{
+		icon: "hugeicons:laptop-programming",
+		label: "Training",
+		link: "/dashboard/mercury-ai-training-course",
+	},
+	{
+		icon: "mdi:credit-card-outline",
+		label: "Payment Management",
+		link: "/settings/payment-management",
+	},
+	{
+		icon: "mdi:help-circle-outline",
+		label: "Help & Contacts",
+		link: "/contact-support",
+	},
+	{
+		icon: "mdi:account-multiple-outline",
+		label: "Affiliation",
+		link: "/dashboard/referral-program",
+	},
+];
+
+export const toolsMenuItems = [
+	{
+		icon: "octicon:rocket-16",
+		label: "Mercury Ai Pro Advance Training Course",
+		link: "/dashboard/mercury-ai-pro-advance-training-course",
+	},
+	{
+		icon: "tabler:news",
+		label: "News & Articles",
+		link: "/dashboard/news-articles",
+	},
+	{
+		icon: "octicon:gift-16",
+		label: "Refferal Program",
+		link: "/dashboard/referral-program",
+	},
+];

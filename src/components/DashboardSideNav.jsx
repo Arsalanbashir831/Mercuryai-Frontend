@@ -44,10 +44,17 @@ export default function DashboardSideNav({ currentRoute }) {
 					alignItems='center'
 					borderRadius='lg'
 					cursor='pointer'
-					bg={currentRoute === item.link ? "blue.600" : "transparent"}
+					bg={
+						currentRoute === item.link
+							? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+							: "transparent"
+					}
 					color={currentRoute === item.link ? "white" : "gray.300"}
 					_hover={{
-						bg: currentRoute === item.link ? "blue.700" : "gray.700",
+						bg:
+							currentRoute === item.link
+								? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+								: "gray.700",
 					}}
 					transition='all 0.15s'
 					onClick={() => {

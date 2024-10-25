@@ -1,23 +1,21 @@
-import { Box, Button, VStack, Flex, Heading, Divider } from "@chakra-ui/react";
-import { Icon } from "@iconify/react";
+import { Box, VStack, Flex, Heading, Divider } from "@chakra-ui/react";
+import CustomButton from "../components/CustomButton";
 
 const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 	return (
 		<Flex flexDirection='column' w='250px' h='100%' bg='transparent'>
 			{headerButton && (
 				<Box p={4}>
-					<Button
-						leftIcon={<Icon icon={headerButton.icon} />}
-						colorScheme='blue'
+					<CustomButton
+						label={headerButton.label}
+						leftIcon={headerButton.icon}
 						borderRadius='2xl'
-						width='100%'>
-						{headerButton.label}
-					</Button>
+					/>
 				</Box>
 			)}
 
 			{header && (
-				<Box p={4} pb={1}>
+				<Box p={4} pr={0} pb={1} w='100%'>
 					<Heading
 						size='md'
 						textAlign='center'
@@ -36,6 +34,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 				overflowY='auto'
 				position='relative'
 				m={4}
+				mr={0}
 				mt={0}
 				bg='blackAlpha.500'
 				borderRadius={header ? "0 0 10px 10px" : "10px"}>
@@ -61,9 +60,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 
 			{footerButton && (
 				<Box px={4} pb={4}>
-					<Button colorScheme='blue' width='100%' borderRadius='2xl'>
-						{footerButton.label}
-					</Button>
+					<CustomButton label={footerButton.label} borderRadius='2xl' />
 				</Box>
 			)}
 		</Flex>

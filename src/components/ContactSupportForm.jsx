@@ -9,6 +9,7 @@ import {
 	Textarea,
 	VStack,
 } from "@chakra-ui/react";
+import CustomButton from "./CustomButton";
 
 const countries = [
 	{ code: "IT", name: "Italy", flag: "🇮🇹" },
@@ -109,19 +110,7 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 					/>
 				</FormControl>
 
-				<Button
-					type='submit'
-					width='100%'
-					bgGradient='linear(to-r, blue.400, blue.500)'
-					color='white'
-					_hover={{
-						bgGradient: "linear(to-r, blue.500, blue.600)",
-					}}
-					_active={{
-						bgGradient: "linear(to-r, blue.600, blue.700)",
-					}}>
-					Open Ticket
-				</Button>
+				<CustomButton label='Open Ticket' onClick={handleSubmitTicket} />
 			</VStack>
 		</form>
 	);

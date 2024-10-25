@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
+import CustomButton from "./CustomButton";
 
 const CourseTopic = () => {
 	return (
@@ -59,7 +60,7 @@ const CourseTopic = () => {
 						color='white'
 						_hover={{ bg: "whiteAlpha.100" }}
 					/>
-					<Button colorScheme='blue'>Complete Lesson</Button>
+					<CustomButton label='Complete Lesson' />
 					<Icon icon='mdi:chevron-right' width='24' height='24' color='white' />
 				</HStack>
 			</Flex>
@@ -78,7 +79,7 @@ const CourseTopic = () => {
 						<Heading size='md' color='white'>
 							Summary AI
 						</Heading>
-						<Button colorScheme='blue'>Generate Summary</Button>
+						<CustomButton label='Generate Summary' w={40} />
 					</Flex>
 				</Card>
 			</VStack>

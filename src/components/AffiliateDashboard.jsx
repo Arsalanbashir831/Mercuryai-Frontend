@@ -27,6 +27,7 @@ import RefferalForm from "./RefferalForm";
 import ContactSupportModal from "./ContactSupportModal";
 import VideoPlayer from "./VideoPlayer";
 import ResponsiveLineChart from "./ResponsiveLineChart";
+import CustomButton from "./CustomButton";
 
 const chartData = [
 	{ name: "Elemento 1", value: 20 },
@@ -102,15 +103,12 @@ const AffiliateDashboard = () => {
 							Referral Program
 						</Text>
 						<HStack spacing={4}>
-							<Button colorScheme='blue' onClick={onSupportOpen}>
-								Contact Support
-							</Button>
-							<Button colorScheme='blue' onClick={onAffiliateSettingOpen}>
-								Affiliate Settings
-							</Button>
-							<Button colorScheme='blue' onClick={onVideoOpen}>
-								Training Videos
-							</Button>
+							<CustomButton onClick={onSupportOpen} label='Contact Support' />
+							<CustomButton
+								onClick={onAffiliateSettingOpen}
+								label='Affiliate Settings'
+							/>
+							<CustomButton onClick={onVideoOpen} label='Training Videos' />
 						</HStack>
 					</HStack>
 
@@ -172,7 +170,7 @@ const AffiliateDashboard = () => {
 								p={4}
 								borderRadius='lg'>
 								<Box
-									bg='blue.500'
+									bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
 									borderRadius='full'
 									w='15'
 									mx='auto'
@@ -200,7 +198,7 @@ const AffiliateDashboard = () => {
 								p={4}
 								borderRadius='lg'>
 								<Box
-									bg='blue.500'
+									bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
 									borderRadius='full'
 									w='15'
 									mx='auto'
@@ -219,9 +217,7 @@ const AffiliateDashboard = () => {
 								<Text color='white' fontSize='2xl' textAlign='center'>
 									100$
 								</Text>
-								<Button colorScheme='blue' size='sm' width='full' mt={2}>
-									Request Balance
-								</Button>
+								<CustomButton label='Request Balance' size='sm' mt={2} />
 							</Flex>
 
 							<Box bg='gray.800' p={4} borderRadius='lg'>

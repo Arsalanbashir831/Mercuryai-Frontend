@@ -12,10 +12,10 @@ export default function CourseProgressBar() {
 				value={32}
 				size='120px'
 				thickness='4px'
-				color='blue.400'
+				color='cyan.400'
 				trackColor='gray.600'>
 				<CircularProgressLabel
-					color='blue.400'
+					color='cyan.500'
 					fontSize='24px'
 					fontWeight='bold'>
 					32%

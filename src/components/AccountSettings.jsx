@@ -10,6 +10,7 @@ import {
 	Avatar,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
+import CustomButton from "./CustomButton";
 
 const AccountSettings = () => {
 	const userInfo = {
@@ -62,15 +63,13 @@ const AccountSettings = () => {
 					</VStack>
 
 					{/* Edit Button */}
-					<Button
-						leftIcon={<Icon icon='solar:pen-linear' />}
-						bg='#37ABC8'
-						color='white'
-						mt={20}
+					<CustomButton
+						icon='solar:pen-linear'
+						label='Edit'
+						w='auto'
 						px={6}
-						_hover={{ bg: "#2D95B0" }}>
-						Edit
-					</Button>
+						mt={20}
+					/>
 				</Box>
 			</Box>
 		</Container>

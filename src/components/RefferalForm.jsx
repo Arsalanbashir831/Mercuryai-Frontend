@@ -10,6 +10,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import CustomButton from "./CustomButton";
 
 export default function RefferalForm({
 	isSubmitted,
@@ -167,9 +168,7 @@ export default function RefferalForm({
 					</Checkbox>
 				)}
 
-				<Button type='submit' colorScheme='blue' size='lg' w='100%' mt={4}>
-					{buttonLabel}
-				</Button>
+				<CustomButton label={buttonLabel} onClick={handleSubmit} mt={4} />
 			</VStack>
 		</form>
 	);

@@ -98,11 +98,11 @@ const ChatArea = () => {
 		<Flex
 			flex={1}
 			direction='column'
-			height='100%'
+			height='97%'
 			m={4}
-			pb={4}
 			bg={bgColor}
-			borderRadius={10}>
+			borderRadius={10}
+			border='1px solid #2196F3'>
 			<Box p={4} borderBottom='1px' borderColor='gray.200'>
 				<Flex align='center'>
 					<Box flex={1}>

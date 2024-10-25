@@ -9,9 +9,11 @@ import {
 	Image,
 	VStack,
 	Progress,
+	Textarea,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
+import CustomButton from "./CustomButton";
 
 const TrainingCourseModule = () => {
 	const [isPlaying, setIsPlaying] = React.useState(false);
@@ -80,7 +82,8 @@ const TrainingCourseModule = () => {
 					<IconButton
 						icon={<Icon icon='mdi:chevron-left' width='24' height='24' />}
 						variant='ghost'
-						color='blue.400'
+						color='#40E0D0'
+						_hover={{ bg: "whiteAlpha.100" }}
 						aria-label='Previous module'
 						onClick={() => {
 							scrollModules("left");
@@ -109,13 +112,19 @@ const TrainingCourseModule = () => {
 								leftIcon={<Icon icon='octicon:book-16' />}
 								w='auto'
 								variant={currentModule === module.id ? "solid" : "ghost"}
-								bg={currentModule === module.id ? "blue.500" : "transparent"}
+								bg={
+									currentModule === module.id
+										? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+										: "transparent"
+								}
 								mx={1}
 								color='white'
 								onClick={() => setCurrentModule(module.id)}
 								_hover={{
 									bg:
-										currentModule === module.id ? "blue.600" : "whiteAlpha.200",
+										currentModule === module.id
+											? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+											: "whiteAlpha.200",
 								}}>
 								{module.name}
 							</Button>
@@ -126,7 +135,8 @@ const TrainingCourseModule = () => {
 					<IconButton
 						icon={<Icon icon='mdi:chevron-right' width='24' height='24' />}
 						variant='ghost'
-						color='blue.400'
+						color='#40E0D0'
+						_hover={{ bg: "whiteAlpha.100" }}
 						aria-label='Next module'
 						onClick={() => {
 							scrollModules("right");
@@ -147,15 +157,24 @@ const TrainingCourseModule = () => {
 				<Flex justify='space-between' alignItems='center'>
 					<VStack spacing={2}>
 						<Box color='gray.400'>AI Summary - Useful Links</Box>
-						<Button bg='blue.400' color='white' _hover={{ bg: "blue.500" }}>
-							Generate Summary
-						</Button>
+						<CustomButton label='Generate Summary' />
 					</VStack>
 
-					<Button bg='blue.400' color='white' _hover={{ bg: "blue.500" }}>
-						Take Test
-					</Button>
+					<CustomButton label='Take Test' w='20%' />
 				</Flex>
+
+				<Textarea
+					placeholder='Generated Summary...'
+					size='md'
+					bg='gray.900'
+					color='white'
+					borderRadius='md'
+					resize='none'
+					border={0}
+					p={4}
+					h={24}
+					readOnly
+				/>
 			</VStack>
 		</Container>
 	);
