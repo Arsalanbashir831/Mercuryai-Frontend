@@ -8,6 +8,7 @@ import {
 	Select,
 	Textarea,
 	VStack,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import CustomButton from "./CustomButton";
 
@@ -19,6 +20,10 @@ const countries = [
 ];
 
 export default function ContactSupportForm({ handleSubmitTicket }) {
+	// Set input background color based on color mode
+	const inputBgColor = useColorModeValue("gray.300", "gray.700");
+	const borderColor = useColorModeValue("blue.300", "blue.300");
+
 	return (
 		<form onSubmit={handleSubmitTicket}>
 			<VStack spacing={4}>
@@ -27,11 +32,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 						<FormLabel>Name</FormLabel>
 						<Input
 							placeholder='Your name'
-							bg='gray.700'
+							bg={inputBgColor}
 							border='none'
 							_focus={{
-								borderColor: "blue.300",
-								boxShadow: "0 0 0 1px blue.300",
+								borderColor: borderColor,
+								boxShadow: `0 0 0 1px ${borderColor}`,
 							}}
 						/>
 					</FormControl>
@@ -40,11 +45,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 						<Input
 							type='email'
 							placeholder='Your email'
-							bg='gray.700'
+							bg={inputBgColor}
 							border='none'
 							_focus={{
-								borderColor: "blue.300",
-								boxShadow: "0 0 0 1px blue.300",
+								borderColor: borderColor,
+								boxShadow: `0 0 0 1px ${borderColor}`,
 							}}
 						/>
 					</FormControl>
@@ -54,11 +59,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 					<FormLabel>Company Name</FormLabel>
 					<Input
 						placeholder='Your company name'
-						bg='gray.700'
+						bg={inputBgColor}
 						border='none'
 						_focus={{
-							borderColor: "blue.300",
-							boxShadow: "0 0 0 1px blue.300",
+							borderColor: borderColor,
+							boxShadow: `0 0 0 1px ${borderColor}`,
 						}}
 					/>
 				</FormControl>
@@ -69,11 +74,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 						<Input
 							type='tel'
 							placeholder='Your phone number'
-							bg='gray.700'
+							bg={inputBgColor}
 							border='none'
 							_focus={{
-								borderColor: "blue.300",
-								boxShadow: "0 0 0 1px blue.300",
+								borderColor: borderColor,
+								boxShadow: `0 0 0 1px ${borderColor}`,
 							}}
 						/>
 					</FormControl>
@@ -81,11 +86,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 						<FormLabel>Country</FormLabel>
 						<Select
 							placeholder='Select country'
-							bg='gray.700'
+							bg={inputBgColor}
 							border='none'
 							_focus={{
-								borderColor: "blue.300",
-								boxShadow: "0 0 0 1px blue.300",
+								borderColor: borderColor,
+								boxShadow: `0 0 0 1px ${borderColor}`,
 							}}>
 							{countries.map((country) => (
 								<option key={country.code} value={country.code}>
@@ -100,11 +105,11 @@ export default function ContactSupportForm({ handleSubmitTicket }) {
 					<FormLabel>Tell Us What Happens</FormLabel>
 					<Textarea
 						placeholder='Describe your issue...'
-						bg='gray.700'
+						bg={inputBgColor}
 						border='none'
 						_focus={{
-							borderColor: "blue.300",
-							boxShadow: "0 0 0 1px blue.300",
+							borderColor: borderColor,
+							boxShadow: `0 0 0 1px ${borderColor}`,
 						}}
 						rows={4}
 					/>

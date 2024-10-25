@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { LineChart, CartesianGrid, XAxis, YAxis, Line } from "recharts";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 const ResponsiveLineChart = ({ chartData }) => {
 	const [chartWidth, setChartWidth] = useState(0);
@@ -18,25 +18,44 @@ const ResponsiveLineChart = ({ chartData }) => {
 		return () => window.removeEventListener("resize", updateWidth);
 	}, []);
 
+	// Define colors based on color mode
+	const bgColor = useColorModeValue("gray.100", "gray.900");
+	const gridColor = useColorModeValue("#ccc", "#444");
+	const axisColor = useColorModeValue("#333", "#fff");
+	const lineColor = useColorModeValue("#3182ce", "#63b3ed"); // Different shades for dark/light mode
+	const dotColor = useColorModeValue("#3182ce", "#63b3ed"); // Same as line color
+
 	return (
 		<Box
 			ref={chartContainerRef}
-			bg='gray.800'
+			bg={bgColor}
 			p={4}
 			borderRadius='lg'
 			overflowX='auto'
-			width='100%'>
+			width='100%'
+			sx={{
+				"&::-webkit-scrollbar": {
+					height: "8px",
+				},
+				"&::-webkit-scrollbar-thumb": {
+					backgroundColor: "gray.300",
+					borderRadius: "8px",
+				},
+				"&::-webkit-scrollbar-track": {
+					backgroundColor: "transparent",
+				},
+			}}>
 			{chartWidth > 0 && (
 				<LineChart width={chartWidth} height={200} data={chartData}>
-					<CartesianGrid strokeDasharray='3 3' stroke='#444' />
-					<XAxis dataKey='name' stroke='#fff' />
-					<YAxis stroke='#fff' />
+					<CartesianGrid strokeDasharray='3 3' stroke={gridColor} />
+					<XAxis dataKey='name' stroke={axisColor} />
+					<YAxis stroke={axisColor} />
 					<Line
 						type='monotone'
 						dataKey='value'
-						stroke='#3182ce'
+						stroke={lineColor}
 						strokeWidth={2}
-						dot={{ fill: "#3182ce" }}
+						dot={{ fill: dotColor }}
 					/>
 				</LineChart>
 			)}

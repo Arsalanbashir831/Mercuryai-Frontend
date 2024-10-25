@@ -21,6 +21,7 @@ import {
 	ModalBody,
 	useDisclosure,
 	Flex,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import RefferalForm from "./RefferalForm";
@@ -74,6 +75,10 @@ const AffiliateDashboard = () => {
 	const [isAffiliationFormSubmitted, setIsAffiliationFormSubmitted] =
 		useState(false);
 
+	const textColor = useColorModeValue("gray.800", "white");
+	const cardBgColor = useColorModeValue("gray.100", "gray.800");
+	const tableHeaderColor = useColorModeValue("gray.600", "gray.300");
+
 	return (
 		<>
 			<Box
@@ -99,7 +104,7 @@ const AffiliateDashboard = () => {
 				}}>
 				<Box mb={10}>
 					<HStack justify='space-between' wrap='wrap' spacing={4} p={6}>
-						<Text fontSize='2xl' fontWeight='bold' color='white'>
+						<Text fontSize='2xl' fontWeight='bold' color={textColor}>
 							Referral Program
 						</Text>
 						<HStack spacing={4}>
@@ -117,39 +122,43 @@ const AffiliateDashboard = () => {
 						<Grid
 							templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(4, 1fr)" }}
 							gap={4}>
-							<Box bg='gray.800' p={4} borderRadius='lg'>
-								<Text color='white' textAlign='center'>
+							<Box bg={cardBgColor} p={4} borderRadius='lg'>
+								<Text color={textColor} textAlign='center'>
 									Revenue Percentage
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center'>
+								<Text color={textColor} fontSize='2xl' textAlign='center'>
 									25%
 								</Text>
 							</Box>
 
-							<Box bg='gray.800' p={4} borderRadius='lg'>
-								<Text color='white' textAlign='center'>
+							<Box bg={cardBgColor} p={4} borderRadius='lg'>
+								<Text color={textColor} textAlign='center'>
 									Discount Percentage
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center'>
+								<Text color={textColor} fontSize='2xl' textAlign='center'>
 									25%
 								</Text>
 							</Box>
 
-							<Box bg='gray.800' p={4} borderRadius='lg'>
-								<Text color='white' textAlign='center'>
+							<Box bg={cardBgColor} p={4} borderRadius='lg'>
+								<Text color={textColor} textAlign='center'>
 									Entered Customers
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center'>
+								<Text color={textColor} fontSize='2xl' textAlign='center'>
 									N.10
 								</Text>
 							</Box>
 
-							<Box bg='gray.800' p={4} borderRadius='lg' position='relative'>
-								<Text color='white' textAlign='center'>
+							<Box bg={cardBgColor} p={4} borderRadius='lg' position='relative'>
+								<Text color={textColor} textAlign='center'>
 									Link Affiliate
 								</Text>
 								<HStack justify='center' spacing={2}>
-									<Text color='white' fontSize='sm' isTruncated maxW='200px'>
+									<Text
+										color={textColor}
+										fontSize='sm'
+										isTruncated
+										maxW='200px'>
 										{affiliateLink}
 									</Text>
 									<Button size='sm' onClick={onCopy} colorScheme='blue'>
@@ -166,7 +175,7 @@ const AffiliateDashboard = () => {
 							<Flex
 								direction='column'
 								justifyContent='center'
-								bg='gray.800'
+								bg={cardBgColor}
 								p={4}
 								borderRadius='lg'>
 								<Box
@@ -183,10 +192,14 @@ const AffiliateDashboard = () => {
 										height='42'
 									/>
 								</Box>
-								<Text color='white' textAlign='center'>
+								<Text color={textColor} textAlign='center'>
 									Cash in
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center' mb={9}>
+								<Text
+									color={textColor}
+									fontSize='2xl'
+									textAlign='center'
+									mb={9}>
 									1000$
 								</Text>
 							</Flex>
@@ -194,7 +207,7 @@ const AffiliateDashboard = () => {
 							<Flex
 								direction='column'
 								justifyContent='center'
-								bg='gray.800'
+								bg={cardBgColor}
 								p={4}
 								borderRadius='lg'>
 								<Box
@@ -211,25 +224,25 @@ const AffiliateDashboard = () => {
 										height='42'
 									/>
 								</Box>
-								<Text color='white' textAlign='center'>
+								<Text color={textColor} textAlign='center'>
 									Balance to Request
 								</Text>
-								<Text color='white' fontSize='2xl' textAlign='center'>
+								<Text color={textColor} fontSize='2xl' textAlign='center'>
 									100$
 								</Text>
 								<CustomButton label='Request Balance' size='sm' mt={2} />
 							</Flex>
 
-							<Box bg='gray.800' p={4} borderRadius='lg'>
-								<Text color='white' mb={2}>
+							<Box bg={cardBgColor} p={4} borderRadius='lg'>
+								<Text color={textColor} mb={2}>
 									Balance payments
 								</Text>
-								<Table size='sm' variant='simple' color='white'>
+								<Table size='sm' variant='simple' color={textColor}>
 									<Thead>
 										<Tr>
-											<Th color='gray.300'>Money</Th>
-											<Th color='gray.300'>Date</Th>
-											<Th color='gray.300'>Status</Th>
+											<Th color={tableHeaderColor}>Money</Th>
+											<Th color={tableHeaderColor}>Date</Th>
+											<Th color={tableHeaderColor}>Status</Th>
 										</Tr>
 									</Thead>
 									<Tbody>
@@ -256,19 +269,19 @@ const AffiliateDashboard = () => {
 						<ResponsiveLineChart chartData={chartData} />
 
 						{/* Clients Table */}
-						<Box bg='gray.800' p={4} borderRadius='lg' overflowX='auto'>
-							<Text color='white' mb={4}>
+						<Box bg={cardBgColor} p={4} borderRadius='lg' overflowX='auto'>
+							<Text color={textColor} mb={4}>
 								Client
 							</Text>
-							<Table variant='simple' color='white'>
+							<Table variant='simple' color={textColor}>
 								<Thead>
 									<Tr>
-										<Th color='gray.300'>N.</Th>
-										<Th color='gray.300'>Name Client</Th>
-										<Th color='gray.300'>Email</Th>
-										<Th color='gray.300'>Registration Date</Th>
-										<Th color='gray.300'>Subscription Plan</Th>
-										<Th color='gray.300'>Current Status</Th>
+										<Th color={tableHeaderColor}>N.</Th>
+										<Th color={tableHeaderColor}>Name Client</Th>
+										<Th color={tableHeaderColor}>Email</Th>
+										<Th color={tableHeaderColor}>Registration Date</Th>
+										<Th color={tableHeaderColor}>Subscription Plan</Th>
+										<Th color={tableHeaderColor}>Current Status</Th>
 									</Tr>
 								</Thead>
 								<Tbody>
@@ -292,7 +305,7 @@ const AffiliateDashboard = () => {
 			{/* Video Modal */}
 			<Modal isOpen={isVideoOpen} onClose={onVideoClose} size='xl' isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg='gray.800' color='white'>
+				<ModalContent bg={cardBgColor} color='white'>
 					<ModalHeader>Training Videos</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
@@ -308,7 +321,7 @@ const AffiliateDashboard = () => {
 				size='xl'
 				isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg='gray.800' color='white'>
+				<ModalContent bg={cardBgColor} color='white'>
 					<ModalHeader textAlign={"center"}>Affiliate Settings</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
@@ -331,7 +344,7 @@ const AffiliateDashboard = () => {
 				size='lg'
 				isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg='gray.800' color='white'>
+				<ModalContent bg={cardBgColor} color='white'>
 					<ModalHeader fontSize='2xl' textAlign='center'>
 						Contact Support
 					</ModalHeader>

@@ -1,7 +1,12 @@
-import { Box, VStack, Flex } from "@chakra-ui/react";
+import { Box, VStack, Flex, useColorModeValue } from "@chakra-ui/react";
 import CustomButton from "../components/CustomButton";
 
 const RightSidebar = ({ headerComponent, headerButton, children }) => {
+	// Define dynamic colors based on light/dark mode
+	const bgColor = useColorModeValue("gray.100", "blackAlpha.500");
+	const scrollTrackColor = useColorModeValue("gray.300", "gray.900");
+	const scrollThumbColor = useColorModeValue("gray.500", "gray.600");
+
 	return (
 		<Flex flexDirection='column' w='250px' h='100%' bg='transparent'>
 			{headerComponent && headerComponent}
@@ -22,7 +27,7 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 				m={4}
 				ml={0}
 				mt={headerComponent || headerButton ? 0 : 4}
-				bg='blackAlpha.500'
+				bg={bgColor}
 				borderRadius={10}>
 				<VStack
 					spacing={2}
@@ -32,9 +37,9 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 					p={4}
 					sx={{
 						"&::-webkit-scrollbar": { width: "4px" },
-						"&::-webkit-scrollbar-track": { background: "gray.900" },
+						"&::-webkit-scrollbar-track": { background: scrollTrackColor },
 						"&::-webkit-scrollbar-thumb": {
-							background: "gray.600",
+							background: scrollThumbColor,
 							borderRadius: "full",
 						},
 					}}>

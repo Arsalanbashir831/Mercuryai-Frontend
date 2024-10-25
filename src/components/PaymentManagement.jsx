@@ -8,6 +8,7 @@ import {
 	Badge,
 	Flex,
 	useToast,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
@@ -91,7 +92,10 @@ const PaymentManagement = () => {
 			}}>
 			{/* Header Section */}
 			<Flex justify='space-between' align='center' mb={8}>
-				<Text color='white' fontSize='2xl' fontWeight='bold'>
+				<Text
+					color={useColorModeValue("gray.800", "white")}
+					fontSize='2xl'
+					fontWeight='bold'>
 					Card Details
 				</Text>
 				<HStack spacing={4}>

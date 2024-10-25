@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ContactSupportForm from "../components/ContactSupportForm";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 
 const About = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -9,13 +9,20 @@ const About = () => {
 		setIsSubmitted(true);
 		console.log("Ticket submitted!");
 	};
+
+	// Use Chakra's useColorMode and useColorModeValue for responsive styles
+	const bgColor = useColorModeValue("gray.300", "gray.800");
+	const formBgColor = useColorModeValue("gray.100", "transparent");
+	const textColor = useColorModeValue("black", "white");
+	const scrollbarThumbColor = useColorModeValue("gray.300", "gray.700");
+
 	return (
 		<Box
 			as='main'
 			flex='1'
 			p={10}
-			bg='gray.800'
-			color='white'
+			bg={bgColor}
+			color={textColor}
 			h='100%'
 			overflowY='auto'
 			sx={{
@@ -26,11 +33,14 @@ const About = () => {
 					width: "6px",
 				},
 				"&::-webkit-scrollbar-thumb": {
-					backgroundColor: "gray.700",
+					backgroundColor: scrollbarThumbColor,
 					borderRadius: "24px",
 				},
 			}}>
-			<Box w='container.md' mx='auto'>
+			<Heading as='h1' size='xl' mb={5} textAlign='center'>
+				Contact Support
+			</Heading>
+			<Box w='container.md' mx='auto' bg={formBgColor} p={5} borderRadius='md'>
 				<ContactSupportForm handleSubmitTicket={handleSubmitTicket} />
 			</Box>
 		</Box>

@@ -1,7 +1,20 @@
-import { Box, VStack, Flex, Heading, Divider } from "@chakra-ui/react";
+import {
+	Box,
+	VStack,
+	Flex,
+	Heading,
+	Divider,
+	useColorModeValue,
+} from "@chakra-ui/react";
 import CustomButton from "../components/CustomButton";
 
 const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
+	// Dynamic colors based on light/dark mode
+	const bgColor = useColorModeValue("gray.100", "blackAlpha.500");
+	const headerTextColor = useColorModeValue("gray.800", "white");
+	const scrollTrackColor = useColorModeValue("gray.300", "gray.900");
+	const scrollThumbColor = useColorModeValue("gray.500", "gray.600");
+
 	return (
 		<Flex flexDirection='column' w='250px' h='100%' bg='transparent'>
 			{headerButton && (
@@ -19,8 +32,8 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 					<Heading
 						size='md'
 						textAlign='center'
-						color='white'
-						bg='blackAlpha.500'
+						color={headerTextColor}
+						bg={bgColor}
 						p={4}
 						mb={0}
 						borderTopRadius={10}>
@@ -36,7 +49,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 				m={4}
 				mr={0}
 				mt={0}
-				bg='blackAlpha.500'
+				bg={bgColor}
 				borderRadius={header ? "0 0 10px 10px" : "10px"}>
 				<VStack
 					spacing={2}
@@ -46,9 +59,9 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 					p={4}
 					sx={{
 						"&::-webkit-scrollbar": { width: "4px" },
-						"&::-webkit-scrollbar-track": { background: "gray.900" },
+						"&::-webkit-scrollbar-track": { background: scrollTrackColor },
 						"&::-webkit-scrollbar-thumb": {
-							background: "gray.600",
+							background: scrollThumbColor,
 							borderRadius: "full",
 						},
 					}}>

@@ -8,6 +8,7 @@ import {
 	Badge,
 	Flex,
 	useToast,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
@@ -26,7 +27,7 @@ const Card = ({ title, description, icon, color }) => {
 							A000000000
 						</Text>
 						<Badge
-							bg='#00E676'
+							bg={useColorModeValue("#00E676", "#68D391")} // Color mode for badge
 							color='white'
 							px={2}
 							py={1}
@@ -112,7 +113,10 @@ const AmazonSellerApi = () => {
 			}}>
 			{/* Header Section */}
 			<Flex justify='space-between' align='center' mb={8}>
-				<Text color='white' fontSize='2xl' fontWeight='bold'>
+				<Text
+					color={useColorModeValue("gray.800", "white")}
+					fontSize='2xl'
+					fontWeight='bold'>
 					Amazon Seller Api
 				</Text>
 				<HStack spacing={4}>

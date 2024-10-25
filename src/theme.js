@@ -8,7 +8,7 @@ const config = {
 const colors = {
 	bgColor: {
 		light: "gray.100",
-		dark: "gray.700",
+		dark: "gray.900",
 	},
 	textColor: {
 		light: "gray.800",
@@ -33,6 +33,10 @@ const colors = {
 	dividerColor: {
 		light: "gray.200",
 		dark: "gray.600",
+	},
+	notificationBgColor: {
+		light: "gray.50",
+		dark: "gray.800",
 	},
 };
 

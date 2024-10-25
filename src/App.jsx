@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Box, Flex, useColorModeValue, useTheme } from "@chakra-ui/react";
+import { Box, Flex, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import Header from "./layout/Header";
 
 import HomePage from "./pages/HomePage";
@@ -12,11 +12,16 @@ import AccountPage from "./pages/AccountPage";
 import AmazonSellerApiPage from "./pages/AmazonSellerApiPage";
 import PaymentManagementPage from "./pages/PaymentManagementPage";
 import SubscriptionPage from "./pages/SubcriptionPage";
+import { useEffect } from "react";
 
 const App = () => {
-	const theme = useTheme();
+	const { setColorMode } = useColorMode();
 
-	const bgColor = theme.colors.bgColor.dark;
+	useEffect(() => {
+		setColorMode("dark");
+	}, []);
+
+	const bgColor = useColorModeValue("gray.300", "gray.700");
 
 	return (
 		<Flex direction='column' height='100vh' overflow='hidden' bg={bgColor}>

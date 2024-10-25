@@ -1,32 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
 	Flex,
 	HStack,
 	Text,
 	Button,
 	IconButton,
-	Menu,
-	MenuButton,
-	MenuList,
-	MenuItem,
-	Box,
-	useColorMode,
-	useColorModeValue,
 	Image,
-	Switch,
+	useColorMode,
+	useTheme,
 	useDisclosure,
+	Box,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import NotificationDropdown from "../components/NotificationDropdown";
 import { useAuth } from "../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-import logoSrc from "/logo.png";
-import placeholderImage from "../assets/placeholders/200x150.svg";
-import { languageMenuItems, userMenuItems, toolsMenuItems } from "../utils";
 import CustomDropdown from "../components/CustomDropdown";
+import NotificationDropdown from "../components/NotificationDropdown";
+import logoSrc from "/logo.png";
+import { languageMenuItems, userMenuItems, toolsMenuItems } from "../utils";
+import placeholderImage from "../assets/placeholders/200x150.svg";
 
-// Notifications data
 const notifications = [
 	{
 		title: "New Update",
@@ -41,45 +34,31 @@ const notifications = [
 	},
 ];
 
-// Helper functions for menu paths (can be moved to utils)
-const userMenuPaths = userMenuItems
-	.filter((item) => item.link)
-	.map((item) => item.link);
-const toolsMenuPaths = toolsMenuItems
-	.filter((item) => item.link)
-	.map((item) => item.link);
-
 const Header = () => {
 	const { isAuthenticated } = useAuth();
-	const { colorMode, toggleColorMode, setColorMode } = useColorMode();
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const bgColor = "gray.900";
-	const textColor = "white";
-	const menuBgColor = "gray.800";
-	const menuHoverBgColor = "gray.700";
-	const dividerColor = "gray.600";
-
-	// Menu disclosures
 	const toolsMenuDisclosure = useDisclosure();
 	const userMenuDisclosure = useDisclosure();
 	const languageMenuDisclosure = useDisclosure();
 
-	const isUserMenuActive = userMenuPaths.includes(location.pathname);
-	const isToolsMenuActive = toolsMenuPaths.includes(location.pathname);
+	const { colorMode } = useColorMode();
+	const theme = useTheme();
 
-	// Set default color mode to light
-	useEffect(() => {
-		setColorMode("light");
-	}, [setColorMode]);
+	const isUserMenuActive = userMenuItems.some(
+		(item) => item.link === location.pathname
+	);
+	const isToolsMenuActive = toolsMenuItems.some(
+		(item) => item.link === location.pathname
+	);
+
+	const bgColor = theme.colors.bgColor[colorMode];
+	const textColor = theme.colors.textColor[colorMode];
+	const menuHoverBgColor = theme.colors.menuHoverBgColor[colorMode];
 
 	const handleMenuItemClick = (item) => {
-		if (item.isThemeToggle) {
-			// toggleColorMode();  // Uncomment this if theme toggling is enabled
-		} else if (item.link) {
-			navigate(item.link);
-		}
+		if (item.link) navigate(item.link);
 	};
 
 	return (
@@ -93,6 +72,7 @@ const Header = () => {
 				<Link to='/'>
 					<Image src={logoSrc} alt='Mercury AI' width='200px' />
 				</Link>
+
 				{isAuthenticated && (
 					<>
 						<Button
@@ -101,12 +81,11 @@ const Header = () => {
 							color={textColor}
 							borderBottom={location.pathname === "/" ? "2px solid" : "none"}
 							borderColor='cyan.500'
-							borderRadius={0}
+							borderBottomRadius={0}
 							onClick={() => navigate("/")}>
 							Chat
 						</Button>
 
-						{/* Tools Menu */}
 						<CustomDropdown
 							label='Tools'
 							isMenuActive={isToolsMenuActive}
@@ -134,33 +113,25 @@ const Header = () => {
 					</>
 				)}
 
-				{/* Language Menu */}
 				<CustomDropdown
 					label='EN'
-					isMenuActive={false}
 					menuItems={languageMenuItems}
 					menuDisclosure={languageMenuDisclosure}
 					handleMenuItemClick={handleMenuItemClick}
 				/>
 
-				{/* User Menu */}
 				{isAuthenticated ? (
 					<CustomDropdown
 						label='Nome Cliente'
-						buttonIcon={"ic:baseline-account-circle"}
+						buttonIcon='ic:baseline-account-circle'
 						isMenuActive={isUserMenuActive}
-						menuDisclosure={userMenuDisclosure}
 						menuItems={userMenuItems}
-						handleMenuItemClick={handleMenuItemClick}
+						menuDisclosure={userMenuDisclosure}
 						showLogoutAndThemeToggle={true}
-						colorMode={colorMode}
+						handleMenuItemClick={handleMenuItemClick}
 					/>
 				) : (
-					<Button
-						leftIcon={<Icon icon='ic:baseline-account-circle' fontSize={28} />}
-						variant='ghost'
-						color={textColor}
-						_hover={{ bg: menuHoverBgColor }}>
+					<Button variant='ghost' color={textColor}>
 						Login / Register
 					</Button>
 				)}

@@ -11,22 +11,26 @@ import {
 	Text,
 	VStack,
 	Image,
-	useColorModeValue,
+	useColorMode,
+	useTheme,
 	IconButton,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
 const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
-	const menuBgColor = "gray.800";
-	const menuItemColor = "white";
-	const menuHoverBgColor = "gray.700";
-	const textColor = "white";
+	const { colorMode } = useColorMode(); // Detect light/dark mode
+	const theme = useTheme(); // Access custom theme colors
+
+	const menuBgColor = theme.colors.notificationBgColor[colorMode];
+	const menuItemColor = theme.colors.menuItemColor[colorMode];
+	const menuHoverBgColor = theme.colors.menuHoverBgColor[colorMode];
+	const textColor = theme.colors.textColor[colorMode];
 
 	return (
 		<Menu>
 			<MenuButton
 				as={IconButton}
-				icon={<Icon icon='mdi:bell-outline' />}
+				icon={<Icon icon={icon} />}
 				variant='ghost'
 				color={textColor}
 				fontSize='24px'
@@ -36,8 +40,8 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 			<MenuList
 				bg={menuBgColor}
 				borderColor={menuHoverBgColor}
-				maxH='300px' // Control the max height for scrolling
-				overflowY='auto' // Enable vertical scrolling
+				maxH='300px' // Control max height for scrolling
+				overflowY='auto'
 				p={0}>
 				<VStack align='stretch' spacing={0}>
 					{notifications.map((notification, index) => (
@@ -70,8 +74,7 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 										size='sm'
 										variant='link'
 										color='blue.400'
-										// onClick={() => window.open(notification.link, "_blank")}
-									>
+										onClick={() => window.open(notification.link, "_blank")}>
 										Read More
 									</Button>
 								)}

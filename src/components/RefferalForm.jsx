@@ -8,6 +8,7 @@ import {
 	Select,
 	Text,
 	VStack,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CustomButton from "./CustomButton";
@@ -46,6 +47,11 @@ export default function RefferalForm({
 		console.log("Form submitted:", formData);
 	};
 
+	const inputBgColor = useColorModeValue("gray.300", "gray.700");
+	const inputTextColor = useColorModeValue("black", "white");
+	const labelColor = useColorModeValue("black", "white");
+	const checkboxColor = useColorModeValue("gray.800", "gray.300");
+
 	return showFormSubmittedMessage && isSubmitted ? (
 		<VStack spacing={4}>
 			<Text color='white' textAlign='center'>
@@ -57,60 +63,60 @@ export default function RefferalForm({
 			<VStack spacing={4}>
 				<Grid templateColumns='repeat(2, 1fr)' gap={4} w='100%'>
 					<FormControl>
-						<FormLabel color='white'>Name</FormLabel>
+						<FormLabel color={labelColor}>Name</FormLabel>
 						<Input
 							name='name'
 							value={formData.name}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'
+							bg={inputBgColor}
+							color={inputTextColor}
 						/>
 					</FormControl>
 
 					<FormControl>
-						<FormLabel color='white'>Email</FormLabel>
+						<FormLabel color={labelColor}>Email</FormLabel>
 						<Input
 							name='email'
 							type='email'
 							value={formData.email}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'
+							bg={inputBgColor}
+							color={inputTextColor}
 						/>
 					</FormControl>
 				</Grid>
 
 				<FormControl>
-					<FormLabel color='white'>Company Name</FormLabel>
+					<FormLabel color={labelColor}>Company Name</FormLabel>
 					<Input
 						name='companyName'
 						value={formData.companyName}
 						onChange={handleChange}
-						bg='gray.700'
-						color='white'
+						bg={inputBgColor}
+						color={inputTextColor}
 					/>
 				</FormControl>
 
 				<Grid templateColumns='repeat(2, 1fr)' gap={4} w='100%'>
 					<FormControl>
-						<FormLabel color='white'>Phone Number</FormLabel>
+						<FormLabel color={labelColor}>Phone Number</FormLabel>
 						<Input
 							name='phoneNumber'
 							value={formData.phoneNumber}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'
+							bg={inputBgColor}
+							color={inputTextColor}
 						/>
 					</FormControl>
 
 					<FormControl>
-						<FormLabel color='white'>Country</FormLabel>
+						<FormLabel color={labelColor}>Country</FormLabel>
 						<Select
 							name='country'
 							value={formData.country}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'>
+							bg={inputBgColor}
+							color={inputTextColor}>
 							<option value='IT'>🇮🇹 Italy</option>
 							{/* Add more countries as needed */}
 						</Select>
@@ -119,30 +125,32 @@ export default function RefferalForm({
 
 				<Grid templateColumns='repeat(2, 1fr)' gap={4} w='100%'>
 					<FormControl>
-						<FormLabel color='white'>URL Social or Website or Group</FormLabel>
+						<FormLabel color={labelColor}>
+							URL Social or Website or Group
+						</FormLabel>
 						<Input
 							name='urlSocial'
 							value={formData.urlSocial}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'
+							bg={inputBgColor}
+							color={inputTextColor}
 						/>
 					</FormControl>
 
 					<FormControl>
-						<FormLabel color='white'>Nickname Coupon</FormLabel>
+						<FormLabel color={labelColor}>Nickname Coupon</FormLabel>
 						<Input
 							name='nicknameCoupon'
 							value={formData.nicknameCoupon}
 							onChange={handleChange}
-							bg='gray.700'
-							color='white'
+							bg={inputBgColor}
+							color={inputTextColor}
 						/>
 					</FormControl>
 				</Grid>
 
 				<FormControl>
-					<FormLabel color='white'>
+					<FormLabel color={labelColor}>
 						Paypal Email Where You Want to Receive Payments
 					</FormLabel>
 					<Input
@@ -150,17 +158,17 @@ export default function RefferalForm({
 						type='email'
 						value={formData.paypalEmail}
 						onChange={handleChange}
-						bg='gray.700'
-						color='white'
+						bg={inputBgColor}
+						color={inputTextColor}
 					/>
 				</FormControl>
 
 				{showCheckBox && (
 					<Checkbox
-						name='ageeToContact'
+						name='agreeToContact'
 						isChecked={formData.agreeToContact}
 						onChange={handleChange}
-						color='gray.300'>
+						color={checkboxColor}>
 						<Text fontSize='xs'>
 							I agree that Mercury AI may contact me at the email address or
 							phone number above.

@@ -4,10 +4,10 @@ import {
 	Container,
 	Heading,
 	Text,
-	Button,
 	VStack,
 	HStack,
 	Avatar,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import CustomButton from "./CustomButton";
@@ -22,6 +22,11 @@ const AccountSettings = () => {
 		address: "Italy",
 	};
 
+	// Define color mode values
+	const textColor = useColorModeValue("gray.800", "white"); // Text color
+	const subTextColor = useColorModeValue("gray.500", "gray.300"); // Subtext color
+	const avatarBg = useColorModeValue("gray.400", "gray.800"); // Avatar background color
+
 	return (
 		<Container maxW='full' p={4} minH='100vh'>
 			<Box
@@ -29,13 +34,14 @@ const AccountSettings = () => {
 				maxW='800px'
 				mx='auto'
 				position='relative'
-				color='white'
+				color={textColor}
+				borderRadius='md'
 				pt={4}>
 				{/* Avatar positioned to the right */}
 				<Box position='absolute' right='10' top='5'>
 					<Avatar
 						size='xl'
-						bg='gray.600'
+						bg={avatarBg}
 						icon={
 							<Icon icon='ph:user-bold' width='40' height='40' color='white' />
 						}
@@ -57,7 +63,7 @@ const AccountSettings = () => {
 									minW='100px'>
 									{key} :
 								</Text>
-								<Text color='gray.300'>{value}</Text>
+								<Text color={subTextColor}>{value}</Text>
 							</HStack>
 						))}
 					</VStack>

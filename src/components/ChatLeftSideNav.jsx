@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { groupChatsByDate } from "../utils";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 
 // Mock Data with Timestamps
 const chatData = [
@@ -16,6 +16,12 @@ export default function ChatLeftSideNav() {
 	const [selectedChat, setSelectedChat] = useState(1);
 	const groupedChats = groupChatsByDate(chatData);
 
+	// Dynamic colors based on light/dark mode
+	const sectionColor = useColorModeValue("gray.600", "gray.300");
+	const chatTextColor = useColorModeValue("black", "white");
+	const selectedBgColor = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
+	const hoverBgColor = useColorModeValue("blackAlpha.50", "whiteAlpha.100");
+
 	const handleChatClick = (chatId) => {
 		setSelectedChat(chatId);
 	};
@@ -23,8 +29,8 @@ export default function ChatLeftSideNav() {
 	return Object.entries(groupedChats).map(
 		([section, chats]) =>
 			chats.length > 0 && (
-				<Box key={section}>
-					<Heading size='xs' mb={2} color='gray.300'>
+				<Box key={section} mb={2}>
+					<Heading size='xs' mb={2} color={sectionColor}>
 						{section === "today"
 							? "Today"
 							: section === "yesterday"
@@ -36,18 +42,14 @@ export default function ChatLeftSideNav() {
 					{chats.map((chat) => (
 						<Box
 							key={chat.id}
-							py={1}
-							px={2}
-							color='white'
-							bg={selectedChat === chat.id ? "whiteAlpha.200" : "transparent"}
+							py={2}
+							px={3}
+							color={chatTextColor}
+							bg={selectedChat === chat.id ? selectedBgColor : "transparent"}
 							_hover={{
-								bg:
-									selectedChat === chat.id
-										? "whiteAlpha.200"
-										: "whiteAlpha.100",
+								bg: selectedChat === chat.id ? selectedBgColor : hoverBgColor,
 							}}
 							borderRadius='md'
-							mb={1}
 							cursor='pointer'
 							onClick={() => handleChatClick(chat.id)}>
 							{chat.title}

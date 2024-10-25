@@ -6,10 +6,9 @@ import {
 	Flex,
 	Heading,
 	IconButton,
-	Image,
 	VStack,
-	Progress,
 	Textarea,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
@@ -31,8 +30,6 @@ const TrainingCourseModule = () => {
 		{ id: 6, name: "Module 6" },
 		{ id: 7, name: "Module 7" },
 	];
-
-	const handlePlayPause = () => setIsPlaying(!isPlaying);
 
 	// Scroll the module list horizontally
 	const scrollModules = (direction) => {
@@ -56,10 +53,25 @@ const TrainingCourseModule = () => {
 		});
 	};
 
+	// Define colors based on the current color mode
+	const buttonBgColor = useColorModeValue("transparent", "gray.700");
+	const selectedButtonBgColor = useColorModeValue(
+		"linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)",
+		"linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+	);
+	const textColor = useColorModeValue("black", "white");
+	const containerBgColor = useColorModeValue("white", "transparent");
+	const textareaBgColor = useColorModeValue("gray.200", "gray.800");
+	const textareaColor = useColorModeValue("black", "white");
+
 	return (
 		<Container
-			maxW='3xl'
+			maxW='5xl'
+			mt={4}
 			p={4}
+			pb={10}
+			bg={containerBgColor}
+			borderRadius='md'
 			maxH='100%'
 			overflowY='auto'
 			sx={{
@@ -114,16 +126,16 @@ const TrainingCourseModule = () => {
 								variant={currentModule === module.id ? "solid" : "ghost"}
 								bg={
 									currentModule === module.id
-										? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
-										: "transparent"
+										? selectedButtonBgColor
+										: buttonBgColor
 								}
 								mx={1}
-								color='white'
+								color={currentModule === module.id ? "white" : textColor}
 								onClick={() => setCurrentModule(module.id)}
 								_hover={{
 									bg:
 										currentModule === module.id
-											? "linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+											? selectedButtonBgColor
 											: "whiteAlpha.200",
 								}}>
 								{module.name}
@@ -146,7 +158,7 @@ const TrainingCourseModule = () => {
 				</Flex>
 
 				{/* Video Title */}
-				<Heading as='h2' size='md' fontStyle='italic' mb={4} color='gray.200'>
+				<Heading as='h2' size='md' fontStyle='italic' mb={4} color={textColor}>
 					Video Title
 				</Heading>
 
@@ -166,8 +178,8 @@ const TrainingCourseModule = () => {
 				<Textarea
 					placeholder='Generated Summary...'
 					size='md'
-					bg='gray.900'
-					color='white'
+					bg={textareaBgColor}
+					color={textareaColor}
 					borderRadius='md'
 					resize='none'
 					border={0}

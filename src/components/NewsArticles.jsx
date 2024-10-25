@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Box,
-	Button,
 	Container,
 	Heading,
 	Image,
@@ -17,33 +16,44 @@ import { Icon } from "@iconify/react";
 import placeholderImage from "../assets/placeholders/600x400.svg";
 import CustomButton from "./CustomButton";
 
-const NewsCard = ({ title, description }) => (
-	<Box
-		bg='whiteAlpha.100'
-		borderRadius='md'
-		overflow='hidden'
-		position='relative'
-		_hover={{ transform: "translateY(-2px)", transition: "transform 0.2s" }}>
-		<Box bg='lightblue' position='relative' maxH='200px' overflow='hidden'>
-			<Image
-				src={placeholderImage}
-				alt='News Article'
-				w='100%'
-				h='200px'
-				objectFit='cover' // Ensures the image fits within the box
-			/>
+const NewsCard = ({ title, description }) => {
+	const cardBgColor = useColorModeValue("gray.100", "whiteAlpha.200");
+	const headingColor = useColorModeValue("gray.800", "white");
+	const textColor = useColorModeValue("gray.600", "gray.300");
+
+	return (
+		<Box
+			bg={cardBgColor}
+			borderRadius='md'
+			overflow='hidden'
+			position='relative'
+			_hover={{ transform: "translateY(-2px)", transition: "transform 0.2s" }}>
+			<Box bg='lightblue' position='relative' maxH='200px' overflow='hidden'>
+				<Image
+					src={placeholderImage}
+					alt='News Article'
+					w='100%'
+					h='200px'
+					objectFit='cover'
+				/>
+			</Box>
+			<Box p={4}>
+				<Heading size='sm' color={headingColor} mb={2}>
+					{title}
+				</Heading>
+				<Text color={textColor} fontSize='sm' mb={3}>
+					{description}
+				</Text>
+				<CustomButton
+					label='Read More'
+					size='sm'
+					borderRadius='full'
+					w='auto'
+				/>
+			</Box>
 		</Box>
-		<Box p={4}>
-			<Heading size='sm' color='white' mb={2}>
-				{title}
-			</Heading>
-			<Text color='gray.300' fontSize='sm' mb={3}>
-				{description}
-			</Text>
-			<CustomButton label='Read More' size='sm' borderRadius='full' w='auto' />
-		</Box>
-	</Box>
-);
+	);
+};
 
 const NewsArticles = () => {
 	const newsItems = Array(6).fill({
@@ -51,6 +61,12 @@ const NewsArticles = () => {
 		description:
 			"Mercury AI recently introduced advanced algorithms for natural language processing, improving real-time responses.",
 	});
+
+	// Define colors based on the current color mode
+	const inputBgColor = useColorModeValue("gray.100", "whiteAlpha.300");
+	const headingColor = useColorModeValue("gray.800", "white");
+	const textColor = useColorModeValue("gray.600", "gray.300");
+	const bgColor = useColorModeValue("gray.100", "whiteAlpha.200");
 
 	return (
 		<Container
@@ -71,12 +87,12 @@ const NewsArticles = () => {
 				},
 			}}>
 			<VStack align='stretch' spacing={6} h='100vh'>
-				<Heading color='white' size='lg'>
+				<Heading color={headingColor} size='lg'>
 					News & Articles
 				</Heading>
 
 				{/* Search Bar */}
-				<InputGroup size='lg' bg='whiteAlpha.200' borderRadius='full'>
+				<InputGroup size='lg' bg={inputBgColor} borderRadius='full'>
 					<Input
 						placeholder='Use AI to get everything you want'
 						borderRadius='full'
@@ -90,7 +106,7 @@ const NewsArticles = () => {
 
 				{/* Latest News Section */}
 				<Box>
-					<Heading color='white' size='md' mb={4}>
+					<Heading color={headingColor} size='md' mb={4}>
 						Latest News
 					</Heading>
 					<Box
@@ -127,17 +143,17 @@ const NewsArticles = () => {
 
 				{/* Important News Section */}
 				<Box>
-					<Heading color='white' size='md' mb={4}>
+					<Heading color={headingColor} size='md' mb={4}>
 						Important News
 					</Heading>
 					<Box>
 						<VStack spacing={4} align='stretch' pb={150}>
 							{newsItems.map((item, index) => (
-								<Box key={index} bg='whiteAlpha.100' p={6} borderRadius='md'>
-									<Heading size='md' color='white' mb={3}>
+								<Box key={index} bg={bgColor} p={6} borderRadius='md'>
+									<Heading size='md' color={headingColor} mb={3}>
 										{item.title}
 									</Heading>
-									<Text color='gray.300' mb={4}>
+									<Text color={textColor} mb={4}>
 										{item.description}
 									</Text>
 									<CustomButton

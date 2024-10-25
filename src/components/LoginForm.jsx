@@ -9,6 +9,8 @@ import {
 	List,
 	ListItem,
 	Flex,
+	useColorMode,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import logoSrc from "/logo.png";
@@ -17,9 +19,10 @@ import PlanSelectionTable from "./PlanSelectionTable";
 import CustomButton from "./CustomButton";
 
 const LoginForm = ({ onLogin }) => {
-	const bgColor = "gray.900";
-	const textColor = "white";
-	const inputBgColor = "gray.700";
+	const bgColor = useColorModeValue("gray.100", "gray.900");
+	const textColor = useColorModeValue("gray.800", "white");
+	const inputBgColor = useColorModeValue("gray.300", "gray.700");
+	const buttonBgColor = useColorModeValue("gray.500", "gray.800");
 
 	const navigate = useNavigate();
 
@@ -113,7 +116,7 @@ const LoginForm = ({ onLogin }) => {
 					</Text>
 					<Button
 						variant='unstyled'
-						bg='gray.800'
+						bg={buttonBgColor}
 						color='white'
 						outline={
 							optionSelected === "individual" ? "2px solid lightblue" : ""
@@ -125,7 +128,7 @@ const LoginForm = ({ onLogin }) => {
 					</Button>
 					<Button
 						variant='unstyled'
-						bg='gray.800'
+						bg={buttonBgColor}
 						color='white'
 						outline={optionSelected === "brand" ? "2px solid lightblue" : ""}
 						mb={2}
@@ -135,7 +138,7 @@ const LoginForm = ({ onLogin }) => {
 					</Button>
 					<Button
 						variant='unstyled'
-						bg='gray.800'
+						bg={buttonBgColor}
 						color='white'
 						outline={
 							optionSelected === "not-started" ? "2px solid lightblue" : ""

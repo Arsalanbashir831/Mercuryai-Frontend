@@ -9,12 +9,12 @@ import {
 	Text,
 	Checkbox,
 	Container,
-	Link,
 	Flex,
 	Switch,
 	Button,
 	Heading,
 	Image,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import ribbonImg from "../assets/ribbon.png";
 
@@ -44,12 +44,19 @@ const PlanSelectionTable = () => {
 	const [selectedColumn, setSelectedColumn] = useState(null);
 	const [billingType, setBillingType] = useState("monthly");
 
+	// Dynamic colors for light and dark modes
+	const tableBorderColor = useColorModeValue("gray.200", "gray.600");
+	const textColor = useColorModeValue("gray.800", "white");
+	const highlightBorderColor = useColorModeValue("yellow.400", "yellow.400");
+
 	const renderFeatureRows = () => {
 		return PLAN_DETAILS.map((plan, colIndex) => (
 			<Td
 				key={colIndex}
 				borderWidth={selectedColumn === colIndex + 1 ? "2px" : "0px"}
-				borderColor={selectedColumn === colIndex + 1 ? "yellow" : "white"}
+				borderColor={
+					selectedColumn === colIndex + 1 ? highlightBorderColor : "transparent"
+				}
 				borderBottom='1px solid'
 				textAlign={colIndex === 1 ? "center" : "left"}>
 				{colIndex === 0 ? plan.price : plan.features[colIndex - 1]}
@@ -72,18 +79,18 @@ const PlanSelectionTable = () => {
 			</Box>
 
 			<Flex direction='column'>
-				<Heading color='white' size='md' mb={4}>
+				<Heading color={textColor} size='md' mb={4}>
 					Prices and Billing
 				</Heading>
 				<Flex align='center' gap={4} mb={4} flexWrap='wrap'>
-					<Text color='white'>Monthly</Text>
+					<Text color={textColor}>Monthly</Text>
 					<Switch
 						colorScheme='blue'
 						onChange={(e) =>
 							setBillingType(e.target.checked ? "annually" : "monthly")
 						}
 					/>
-					<Text color='white'>Annually</Text>
+					<Text color={textColor}>Annually</Text>
 					{billingType === "annually" && (
 						<Button
 							size='sm'
@@ -98,18 +105,25 @@ const PlanSelectionTable = () => {
 				</Flex>
 			</Flex>
 
-			<Table variant='simple'>
+			<Table variant='simple' borderColor={tableBorderColor}>
 				<Thead>
 					<Tr>
-						<Td fontWeight='bold'>Features</Td>
+						<Td fontWeight='bold' color={textColor} borderBottom='1px solid'>
+							Features
+						</Td>
 						{PLAN_DETAILS.map((plan, index) => (
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderBottom='1px solid'
 								fontWeight='bold'
-								position='relative'>
+								position='relative'
+								color={textColor}>
 								{plan.popular && (
 									<Box
 										position='absolute'
@@ -118,8 +132,6 @@ const PlanSelectionTable = () => {
 										display='flex'
 										alignItems='center'
 										gap={1}>
-										{/* MOST POPULAR
-											<Icon icon='emojione:trophy' /> */}
 										<Image src={ribbonImg} w={12} />
 									</Box>
 								)}
@@ -130,58 +142,82 @@ const PlanSelectionTable = () => {
 				</Thead>
 				<Tbody>
 					<Tr>
-						<Td fontWeight='bold'>Price</Td>
+						<Td fontWeight='bold' color={textColor} borderBottom='1px solid'>
+							Price
+						</Td>
 						{PLAN_DETAILS.map((plan, index) => (
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderTop='1px solid'
-								borderBottom='1px solid'>
+								borderBottom='1px solid'
+								color={textColor}>
 								{billingType === "monthly" ? plan.price : plan.annualPrice}
 							</Td>
 						))}
 					</Tr>
 					<Tr>
-						<Td fontWeight='bold'>Mercury Ai Chat</Td>
+						<Td fontWeight='bold' color={textColor} borderBottom='1px solid'>
+							Mercury Ai Chat
+						</Td>
 						{PLAN_DETAILS.map((plan, index) => (
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderTop='1px solid'
-								borderBottom='1px solid'>
+								borderBottom='1px solid'
+								color={textColor}>
 								{plan.features[0]}
 							</Td>
 						))}
 					</Tr>
 					<Tr>
-						<Td fontWeight='bold'>
+						<Td fontWeight='bold' color={textColor} borderBottom='1px solid'>
 							Mercury Training for Your Business Success
 						</Td>
 						{PLAN_DETAILS.map((plan, index) => (
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderTop='1px solid'
-								borderBottom='1px solid'>
+								borderBottom='1px solid'
+								color={textColor}>
 								{plan.features[1]}
 							</Td>
 						))}
 					</Tr>
 					<Tr>
-						<Td fontWeight='bold'>
+						<Td fontWeight='bold' color={textColor} borderBottom='1px solid'>
 							Amazon Seller and Amazon Advertising API Access
 						</Td>
 						{PLAN_DETAILS.map((plan, index) => (
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderTop='1px solid'
 								borderBottom='1px solid'
-								textAlign='center'>
+								textAlign='center'
+								color={textColor}>
 								{plan.features[2]}
 							</Td>
 						))}
@@ -192,7 +228,11 @@ const PlanSelectionTable = () => {
 							<Td
 								key={index}
 								borderWidth={selectedColumn === index + 1 ? "2px" : "0px"}
-								borderColor={selectedColumn === index + 1 ? "yellow" : "white"}
+								borderColor={
+									selectedColumn === index + 1
+										? highlightBorderColor
+										: "transparent"
+								}
 								borderTop='1px solid'
 								borderBottom={
 									selectedColumn === index + 1 ? "2px solid yellow" : "0"

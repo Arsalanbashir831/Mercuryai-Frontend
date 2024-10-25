@@ -46,11 +46,14 @@ const automatedResponses = [
 ];
 
 const ChatArea = () => {
-	const bgColor = "gray.900";
-	const textColor = "white";
-	const menuBgColor = "gray.800";
-	const menuItemColor = "white";
-	const menuHoverBgColor = "gray.700";
+	// Light/Dark Mode Colors
+	const bgColor = useColorModeValue("gray.100", "gray.900");
+	const textColor = useColorModeValue("black", "white");
+	const menuBgColor = useColorModeValue("white", "gray.800");
+	const menuItemColor = useColorModeValue("black", "white");
+	const menuHoverBgColor = useColorModeValue("gray.200", "gray.700");
+	const scrollTrackColor = useColorModeValue("gray.300", "gray.900");
+	const scrollThumbColor = useColorModeValue("gray.500", "gray.600");
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState([]);
@@ -64,19 +67,16 @@ const ChatArea = () => {
 		if (inputValue.trim() === "") return;
 
 		const newUserMessage = { text: inputValue, isUser: true };
-		const newMessages = [...messages, newUserMessage];
-		setMessages(newMessages);
+		setMessages((prev) => [...prev, newUserMessage]);
 		setInputValue("");
 		setMessageCount((prev) => prev + 1);
 
-		// Automatically respond with a dummy message
 		const randomResponse =
 			automatedResponses[Math.floor(Math.random() * automatedResponses.length)];
 
-		// Add a small delay to simulate real-time response
 		setTimeout(() => {
 			const aiResponse = { text: randomResponse, isUser: false };
-			setMessages((prevMessages) => [...prevMessages, aiResponse]);
+			setMessages((prev) => [...prev, aiResponse]);
 		}, 1000);
 	};
 
@@ -85,10 +85,9 @@ const ChatArea = () => {
 			setIsWarningVisible(true);
 			setIsDisabled(true);
 
-			// Disable input and buttons for 10 seconds
 			setTimeout(() => {
 				setIsDisabled(false);
-				setMessageCount(0); // Reset the limit
+				setMessageCount(0);
 				setIsWarningVisible(false);
 			}, 50000);
 		}
@@ -144,16 +143,17 @@ const ChatArea = () => {
 					</Box>
 				</Flex>
 			</Box>
+
 			<Box
 				flex={1}
 				overflowY='auto'
 				mb={4}
-				maxH={"calc(100% - 10px)"}
+				maxH='calc(100% - 10px)'
 				sx={{
 					"&::-webkit-scrollbar": { width: "4px" },
-					"&::-webkit-scrollbar-track": { background: "gray.900" },
+					"&::-webkit-scrollbar-track": { background: scrollTrackColor },
 					"&::-webkit-scrollbar-thumb": {
-						background: "gray.600",
+						background: scrollThumbColor,
 						borderRadius: "full",
 					},
 				}}>
@@ -162,7 +162,6 @@ const ChatArea = () => {
 				))}
 			</Box>
 
-			{/* Input Area with Buttons inside the field */}
 			<Flex p={4} direction='column'>
 				{isWarningVisible && (
 					<Box
@@ -172,87 +171,62 @@ const ChatArea = () => {
 						mx={4}
 						textAlign='center'
 						borderRadius='3xl'
-						borderBottomEndRadius={0}
-						borderBottomStartRadius={0}>
+						borderBottomRadius={0}>
 						<Text>
-							Hi Customer Name, you have exceeded the limit of 25 daily
-							messages. Please wait 24:00 (Timer) to regain access to the chat,
-							otherwise upgrade.
+							You have exceeded the message limit. Please wait to regain access
+							or upgrade your plan.
 						</Text>
 					</Box>
 				)}
+
 				<InputGroup>
-					{/* Attachment Button */}
 					<InputLeftElement>
 						<Menu>
 							<MenuButton
 								as={IconButton}
+								icon={<Icon icon='bi:paperclip' fontSize={20} />}
 								variant='ghost'
-								color='black'
+								isDisabled={isDisabled}
+								bg='transparent'
 								_hover={{ bg: "transparent" }}
 								_active={{ bg: "transparent" }}
-								icon={<Icon icon='bi:paperclip' fontSize={20} />}
-								isDisabled={isDisabled}
 							/>
 							<MenuList bg={menuBgColor} borderColor='blue.900'>
-								{attachmentCommands.map(
-									({ icon, label, command, color }, index) => (
-										<MenuItem
-											key={index}
-											fontSize={14}
-											icon={<Icon icon={icon} />}
-											command={command}
-											color={color || menuItemColor}
-											bg={menuBgColor}
-											_hover={{ bg: menuHoverBgColor }}>
-											{label}
-										</MenuItem>
-									)
-								)}
+								{attachmentCommands.map(({ icon, label }, index) => (
+									<MenuItem
+										key={index}
+										fontSize={14}
+										icon={<Icon icon={icon} />}
+										bg={menuBgColor}
+										_hover={{ bg: menuHoverBgColor }}>
+										{label}
+									</MenuItem>
+								))}
 							</MenuList>
 						</Menu>
 					</InputLeftElement>
 
-					{/* Text Input */}
 					<Input
 						placeholder='Type a message...'
-						color={textColor}
-						bg={menuBgColor}
-						_hover={{ borderColor: "transparent" }}
-						_active={{ bg: menuBgColor, outline: "none" }}
-						_focusVisible={{ bg: menuBgColor, outline: "none" }}
-						borderRadius='full'
-						borderColor='transparent'
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
-						ref={inputRef}
-						isDisabled={isDisabled}
 						onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+						color={textColor}
+						bg={menuBgColor}
+						borderRadius='full'
+						isDisabled={isDisabled}
 					/>
 
-					{/* Send Button */}
 					<InputRightElement>
 						<IconButton
-							icon={
-								<Icon
-									icon='bi:arrow-up-circle-fill'
-									fontSize={24}
-									color='lightblue'
-								/>
-							}
-							colorScheme='transparent'
-							borderRadius='full'
+							icon={<Icon icon='bi:arrow-up-circle-fill' fontSize={24} />}
 							onClick={handleSendMessage}
 							isDisabled={isDisabled}
+							bg='transparent'
+							_hover={{ bg: "transparent" }}
 						/>
 					</InputRightElement>
 				</InputGroup>
-
-				{/* Message */}
-				<Text fontSize='xs' color='gray.400' mt={2} textAlign='center'>
-					MercuryAI può commettere errori. Considera di verificare le
-					informazioni importanti.
-				</Text>
 			</Flex>
 		</Flex>
 	);

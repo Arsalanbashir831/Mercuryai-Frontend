@@ -14,6 +14,7 @@ import {
 	Flex,
 	Image,
 	chakra,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import ribbonImg from "../assets/ribbon.png";
@@ -68,10 +69,7 @@ const SubscriptionTable = () => {
 		billingType === "monthly" ? plan.name : plan.annualName;
 	const isSelected = (planValue) => currentPlan === planValue;
 
-	// Combine features based on showMore state
-	const displayedFeatures = showMore
-		? [...FEATURES, ...EXTRA_FEATURES]
-		: FEATURES;
+	const textColor = useColorModeValue("gray.800", "white");
 
 	return (
 		<Container
@@ -106,7 +104,7 @@ const SubscriptionTable = () => {
 			{/* Header Section */}
 			<Flex direction='column' mb={6}>
 				<Flex justify='space-between' align='center' mb={4}>
-					<Heading color='white' size='lg' mb={2}>
+					<Heading color={textColor} size='lg' mb={2}>
 						Subscription
 					</Heading>
 					<Button
@@ -118,25 +116,27 @@ const SubscriptionTable = () => {
 						Stop Subscription
 					</Button>
 				</Flex>
-				<Heading color='white' size='md' mb={4}>
+				<Heading color={textColor} size='md' mb={4}>
 					Prices and Billing
 				</Heading>
 
 				<Flex align='center' gap={4} mb={4} flexWrap='wrap'>
-					<Text color='white'>Monthly</Text>
+					<Text color={textColor}>Monthly</Text>
 					<Switch
 						colorScheme='cyan'
 						onChange={(e) =>
 							setBillingType(e.target.checked ? "annually" : "monthly")
 						}
+						border='1px solid white'
+						borderRadius='full'
 					/>
-					<Text color='white'>Annually</Text>
+					<Text color={textColor}>Annually</Text>
 					{billingType === "annually" && (
 						<Button
 							size='sm'
 							variant='outline'
-							color='#40E0D0'
-							borderColor='#40E0D0'
+							color={useColorModeValue("#16b9d9", "#40E0D0")}
+							borderColor={useColorModeValue("#16b9d9", "#40E0D0")}
 							borderRadius='full'
 							_hover={{ bg: "transparent" }}>
 							10% Annual Off
@@ -146,7 +146,7 @@ const SubscriptionTable = () => {
 			</Flex>
 
 			{/* Plans Table */}
-			<Box borderRadius='md' border='1px solid' borderColor='white'>
+			<Box borderRadius='md' border='1px solid' borderColor={textColor}>
 				<Table variant='simple' bg='rgb(27, 99, 129)' color='white'>
 					<Thead>
 						{/* Header row remains the same */}
@@ -355,10 +355,10 @@ const SubscriptionTable = () => {
 					w='full'
 					py={3}
 					bg='transparent'
-					color='white'
+					color={textColor}
 					_hover={{ bg: "whiteAlpha.100" }}
 					borderTop='1px'
-					borderColor='white'
+					borderColor={textColor}
 					display='flex'
 					alignItems='center'
 					gap={2}>

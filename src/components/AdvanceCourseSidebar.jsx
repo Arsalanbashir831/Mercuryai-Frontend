@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Box, VStack, Text, Flex, Button } from "@chakra-ui/react";
+import {
+	Box,
+	VStack,
+	Text,
+	Flex,
+	Button,
+	useColorModeValue,
+} from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
@@ -27,15 +34,24 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 		}));
 	};
 
+	// Define colors based on the current color mode
+	const textColor = useColorModeValue("gray.800", "white");
+	const menuItemColor = useColorModeValue("gray.900", "gray.300");
+	const buttonHoverBg = useColorModeValue("blackAlpha.100", "whiteAlpha.300");
+	const selectedButtonBg = useColorModeValue(
+		"blackAlpha.200",
+		"whiteAlpha.300"
+	);
+	const lockedOverlayBg = useColorModeValue("blackAlpha.700", "blackAlpha.900");
+	const lockedOverlayTextColor = useColorModeValue("white", "gray.200");
+
 	return (
 		<Box h='100vh' position='relative'>
 			{/* User Profile Section */}
 			<Flex align='center' mb={6}>
-				<Icon icon='ph:user-circle' width='30' height='30' color='#FFFFFF' />
-				<Box ml={2}>
-					<Text fontSize='sm' textColor='white'>
-						Nome Cliente
-					</Text>
+				<Icon icon='ph:user-circle' width='30' height='30' color={textColor} />
+				<Box ml={2} color={textColor}>
+					<Text fontSize='sm'>Nome Cliente</Text>
 					<Text fontSize='xs' color='blue.200'>
 						0% COMPLETE
 					</Text>
@@ -45,15 +61,15 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 			{/* Dashboard Link */}
 			<Button
 				variant='ghost'
-				color='gray.300'
+				color={menuItemColor}
 				bg={
 					location.pathname ===
 						"/dashboard/mercury-ai-pro-advance-training-course" &&
 					!selectedTopic
-						? "whiteAlpha.100"
+						? selectedButtonBg
 						: "transparent"
 				}
-				_hover={{ bg: "whiteAlpha.100" }}
+				_hover={{ bg: buttonHoverBg }}
 				w='full'
 				mb={4}
 				p={2}
@@ -74,9 +90,9 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 							py={2}
 							px={3}
 							fontSize='sm'
-							color='gray.300'
-							bg={selectedTopic === topic ? "whiteAlpha.100" : "transparent"}
-							_hover={{ bg: "whiteAlpha.100" }}
+							color={menuItemColor}
+							bg={selectedTopic === topic ? selectedButtonBg : "transparent"}
+							_hover={{ bg: buttonHoverBg }}
 							onClick={() => toggleTopic(topic)}
 							rightIcon={
 								<Icon
@@ -101,7 +117,7 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 										py={1}
 										px={3}
 										fontSize='sm'
-										color='gray.300'
+										color={menuItemColor}
 										leftIcon={
 											<Icon
 												icon='ph:dot'
@@ -112,10 +128,10 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 										}
 										bg={
 											selectedLesson === lesson.toString()
-												? "whiteAlpha.100"
+												? selectedButtonBg
 												: "transparent"
 										}
-										_hover={{ bg: "whiteAlpha.100" }}
+										_hover={{ bg: buttonHoverBg }}
 										// Navigate with topic name and lesson number as query params
 										onClick={() =>
 											navigate(`?topic=${topic}&lesson=${lesson}`)
@@ -139,23 +155,16 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 					bottom='0'
 					w='full'
 					h='full'
-					bg='blackAlpha.700'
+					bg={lockedOverlayBg}
 					backdropFilter='blur(10px)'
 					display='flex'
 					flexDirection='column'
 					justifyContent='center'
 					alignItems='center'
-					color='white'
+					color={lockedOverlayTextColor}
 					fontSize='2xl'
 					zIndex='10'>
 					<Icon icon='mdi:lock' width='64' height='64' />
-					{/* <Button
-						mt={4}
-						colorScheme='blue'
-						size='lg'
-						onClick={() => setIsUpgraded(false)}>
-						Unlock Course
-					</Button> */}
 					<CustomButton
 						label='Unlock Course'
 						onClick={() => setIsUpgraded(false)}

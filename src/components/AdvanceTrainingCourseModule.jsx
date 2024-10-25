@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	Box,
 	Button,
@@ -7,6 +7,7 @@ import {
 	Container,
 	HStack,
 	Image,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
@@ -14,12 +15,25 @@ import placeholderImage from "../assets/placeholders/200x150.svg";
 import CustomButton from "./CustomButton";
 
 const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
+	// Define colors based on the current color mode
+	const textColor = useColorModeValue("gray.800", "white");
+	const skillBgColor = useColorModeValue(
+		"linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)",
+		"linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)"
+	);
+	const buttonBgColor = useColorModeValue("gray.100", "gray.100");
+	const buttonHoverBgColor = useColorModeValue("gray.200", "gray.200");
+	const buttonColor = useColorModeValue("blue.500", "blue.300");
+	const lockedOverlayBg = useColorModeValue("blackAlpha.700", "blackAlpha.900");
+	const lockedOverlayTextColor = useColorModeValue("white", "gray.200");
+
 	return (
 		<Container
 			maxW='7xl'
 			position='relative'
 			overflowY={isUpgraded ? "hidden" : "auto"}
 			h='100%'
+			p={6}
 			sx={{
 				"&::-webkit-scrollbar": {
 					width: "0.4em",
@@ -31,19 +45,17 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 					backgroundColor: "transparent",
 					borderRadius: "16px",
 				},
-			}}>
+			}}
+			borderRadius='md'>
 			{/* Skills Section */}
 			<Box mb={6}>
-				<Text color='white' mb={2} fontWeight='bold'>
+				<Text color={textColor} mb={2} fontWeight='bold'>
 					Skills You Will Gain
 				</Text>
 				<HStack spacing={4}>
 					{[1, 2, 3, 4, 5, 6, 7].map((skill) => (
 						<Box key={skill}>
-							<Box
-								bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
-								p={2}
-								borderRadius='full'>
+							<Box bg={skillBgColor} p={2} borderRadius='full'>
 								<Icon
 									icon='material-symbols-light:diamond-outline'
 									width='32'
@@ -51,7 +63,7 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 									color='white'
 								/>
 							</Box>
-							<Text color='white' fontSize='sm' textAlign='center'>
+							<Text color={textColor} fontSize='sm' textAlign='center'>
 								Skill {skill}
 							</Text>
 						</Box>
@@ -65,8 +77,9 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 				</Box>
 
 				<Flex direction='column' gap={10} flex={1} maxW={300}>
+					{/* Certificate Request Box */}
 					<Box
-						bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
+						bg={skillBgColor}
 						p={4}
 						pb={8}
 						borderRadius='md'
@@ -82,18 +95,20 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 						<Button
 							colorScheme='gray'
 							size='sm'
-							color='blue.500'
+							bg={buttonBgColor}
+							color={buttonColor}
+							_hover={{ bg: buttonHoverBgColor }}
 							position='absolute'
 							bottom={-4}
 							left='50%'
 							transform='translateX(-50%)'>
-							{" "}
 							Request Now
 						</Button>
 					</Box>
 
+					{/* Elite Student Group Access Box */}
 					<Box
-						bg='linear-gradient(90deg, #40E0D0 0%, #2196F3 100%)'
+						bg={skillBgColor}
 						p={4}
 						pb={8}
 						borderRadius='md'
@@ -112,7 +127,9 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 						<Button
 							colorScheme='gray'
 							size='sm'
-							color='blue.500'
+							bg={buttonBgColor}
+							color={buttonColor}
+							_hover={{ bg: buttonHoverBgColor }}
 							position='absolute'
 							bottom={-4}
 							left='50%'
@@ -122,6 +139,7 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 					</Box>
 				</Flex>
 			</Flex>
+
 			{/* Locked Overlay */}
 			{isUpgraded && (
 				<Box
@@ -132,18 +150,18 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 					bottom='0'
 					w='full'
 					h='full'
-					bg='blackAlpha.700'
+					bg={lockedOverlayBg}
 					backdropFilter='blur(10px)'
 					display='flex'
 					flexDirection='column'
 					justifyContent='center'
 					alignItems='center'
-					color='white'
+					color={lockedOverlayTextColor}
 					fontSize='2xl'
 					zIndex='10'>
 					<Icon icon='mdi:lock' width='64' height='64' />
 					<CustomButton
-						label='Unclock Course'
+						label='Unlock Course'
 						onClick={() => setIsUpgraded(false)}
 						w={52}
 						size='lg'
