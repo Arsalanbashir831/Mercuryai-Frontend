@@ -181,7 +181,7 @@ const LoginForm = ({ onLogin }) => {
 							<Link
 								color='blue.300'
 								onClick={() => {
-									onClose();
+									// onClose();
 									navigate("/contact-support");
 								}}>
 								Contact Us

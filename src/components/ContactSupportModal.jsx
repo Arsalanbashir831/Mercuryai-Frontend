@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { Text, VStack } from "@chakra-ui/react";
+import {
+	Text,
+	useColorMode,
+	useColorModeValue,
+	VStack,
+} from "@chakra-ui/react";
 import ContactSupportForm from "./ContactSupportForm";
 
 export default function ContactSupportModal() {
+	const textColor = useColorModeValue("gray.800", "white");
+
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const handleSubmitTicket = (e) => {
 		e.preventDefault();
@@ -11,7 +18,7 @@ export default function ContactSupportModal() {
 	};
 	return isSubmitted ? (
 		<VStack spacing={4}>
-			<Text color='white' textAlign='center'>
+			<Text color={textColor} textAlign='center'>
 				One of our assistants will contact you as soon as possible through the
 				emails you left when opening this ticket the current expected average
 				waiting time is 6 hours

@@ -38,7 +38,12 @@ const AdvancedTrainingCoursePage = () => {
 				)
 			}
 			headerComponent={
-				hasTopicAndLesson ? null : <AdvanceTrainingCourseModuleHeader />
+				hasTopicAndLesson ? null : (
+					<AdvanceTrainingCourseModuleHeader
+						isUpgraded={isUpgraded}
+						setIsUpgraded={setIsUpgraded}
+					/>
+				)
 			}
 		/>
 	);

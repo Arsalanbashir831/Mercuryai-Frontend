@@ -8,6 +8,7 @@ import {
 	HStack,
 	Image,
 	useColorModeValue,
+	calc,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
@@ -48,11 +49,11 @@ const AdvanceTrainingCourseModule = ({ isUpgraded, setIsUpgraded }) => {
 			}}
 			borderRadius='md'>
 			{/* Skills Section */}
-			<Box mb={6}>
+			<Box mb={6} width='calc(100% - 325px)'>
 				<Text color={textColor} mb={2} fontWeight='bold'>
 					Skills You Will Gain
 				</Text>
-				<HStack spacing={4}>
+				<HStack spacing={4} justifyContent='space-between'>
 					{[1, 2, 3, 4, 5, 6, 7].map((skill) => (
 						<Box key={skill}>
 							<Box bg={skillBgColor} p={2} borderRadius='full'>

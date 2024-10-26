@@ -246,7 +246,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 								<Link
 									color='blue.300'
 									onClick={() => {
-										onClose();
 										navigate("/contact-support");
 									}}>
 									Contact Us

@@ -18,7 +18,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 	return (
 		<Flex flexDirection='column' w='250px' h='100%' bg='transparent'>
 			{headerButton && (
-				<Box p={4}>
+				<Box py={4} pl={4}>
 					<CustomButton
 						label={headerButton.label}
 						leftIcon={headerButton.icon}
@@ -72,7 +72,7 @@ const LeftSidebar = ({ header, headerButton, children, footerButton }) => {
 			<Divider mx={4} mb={4} w='90%' />
 
 			{footerButton && (
-				<Box px={4} pb={4}>
+				<Box pl={4} pb={4}>
 					<CustomButton label={footerButton.label} borderRadius='2xl' />
 				</Box>
 			)}

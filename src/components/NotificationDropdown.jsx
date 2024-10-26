@@ -25,6 +25,7 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 	const menuItemColor = theme.colors.menuItemColor[colorMode];
 	const menuHoverBgColor = theme.colors.menuHoverBgColor[colorMode];
 	const textColor = theme.colors.textColor[colorMode];
+	const scrollBarColor = theme.colors.dividerColor[colorMode];
 
 	return (
 		<Menu>
@@ -41,8 +42,20 @@ const NotificationDropdown = ({ notifications, icon = "mdi:bell-outline" }) => {
 				bg={menuBgColor}
 				borderColor={menuHoverBgColor}
 				maxH='300px' // Control max height for scrolling
+				p={0}
 				overflowY='auto'
-				p={0}>
+				sx={{
+					"&::-webkit-scrollbar": {
+						width: "8px",
+					},
+					"&::-webkit-scrollbar-track": {
+						width: "6px",
+					},
+					"&::-webkit-scrollbar-thumb": {
+						background: scrollBarColor,
+						borderRadius: "full",
+					},
+				}}>
 				<VStack align='stretch' spacing={0}>
 					{notifications.map((notification, index) => (
 						<MenuItem

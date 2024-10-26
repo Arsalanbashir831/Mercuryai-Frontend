@@ -114,7 +114,7 @@ const TrainingCourseModule = () => {
 							"&::-webkit-scrollbar": { height: "4px" },
 							"&::-webkit-scrollbar-track": { background: "transparent" },
 							"&::-webkit-scrollbar-thumb": {
-								background: "gray.500",
+								background: "transparent",
 								borderRadius: "full",
 							},
 						}}>

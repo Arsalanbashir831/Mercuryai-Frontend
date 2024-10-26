@@ -96,11 +96,11 @@ const NewsArticles = () => {
 					<Input
 						placeholder='Use AI to get everything you want'
 						borderRadius='full'
-						color='white'
+						color={textColor}
 						_placeholder={{ color: "gray.400" }}
 					/>
 					<InputRightElement pr={2}>
-						<Icon icon='mdi:magnify' width='24' height='24' color='#3182CE' />
+						<Icon icon='mdi:magnify' width='24' height='24' color={textColor} />
 					</InputRightElement>
 				</InputGroup>
 

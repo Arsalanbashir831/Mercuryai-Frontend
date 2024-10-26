@@ -305,7 +305,7 @@ const AffiliateDashboard = () => {
 			{/* Video Modal */}
 			<Modal isOpen={isVideoOpen} onClose={onVideoClose} size='xl' isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg={cardBgColor} color='white'>
+				<ModalContent bg={cardBgColor} color={textColor}>
 					<ModalHeader>Training Videos</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
@@ -321,7 +321,7 @@ const AffiliateDashboard = () => {
 				size='xl'
 				isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg={cardBgColor} color='white'>
+				<ModalContent bg={cardBgColor} color={textColor}>
 					<ModalHeader textAlign={"center"}>Affiliate Settings</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
@@ -344,11 +344,11 @@ const AffiliateDashboard = () => {
 				size='lg'
 				isCentered>
 				<ModalOverlay bg='blackAlpha.700' backdropFilter='blur(10px)' />
-				<ModalContent bg={cardBgColor} color='white'>
+				<ModalContent bg={cardBgColor} color={textColor}>
 					<ModalHeader fontSize='2xl' textAlign='center'>
 						Contact Support
 					</ModalHeader>
-					<ModalCloseButton />
+					<ModalCloseButton color={textColor} />
 					<ModalBody pb={6}>
 						<ContactSupportModal />
 					</ModalBody>

@@ -10,6 +10,12 @@ import {
 	Flex,
 	Card,
 	useColorModeValue,
+	Textarea,
+	Accordion,
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+	AccordionIcon,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "./VideoPlayer";
@@ -20,6 +26,8 @@ const CourseTopic = () => {
 	const cardBgColor = useColorModeValue("whiteAlpha.100", "whiteAlpha.200");
 	const textColor = useColorModeValue("gray.800", "white");
 	const iconColor = useColorModeValue("black", "white");
+	const textareaBgColor = useColorModeValue("gray.200", "gray.800");
+	const textareaColor = useColorModeValue("black", "white");
 
 	return (
 		<Box
@@ -82,17 +90,42 @@ const CourseTopic = () => {
 
 			{/* Additional Sections */}
 			<VStack spacing={4} my={6}>
-				<Card
-					w='100%'
-					p={4}
-					variant='outline'
-					bg={cardBgColor}
-					borderColor={iconColor}>
-					<Heading size='md' color={textColor} mb={2}>
-						Links and Resources
-					</Heading>
-					{/* Add your links content here */}
-				</Card>
+				{/* Links and Resources Accordion */}
+				<Accordion allowToggle w='100%' mb={4}>
+					<AccordionItem>
+						<h2>
+							<AccordionButton bg={cardBgColor} borderColor={iconColor}>
+								<Box as='span' flex='1' textAlign='left' color={textColor}>
+									Links and Resources
+								</Box>
+								<AccordionIcon />
+							</AccordionButton>
+						</h2>
+						<AccordionPanel pb={4}>
+							{/* Add your links and resources content here */}
+							<Text color={textColor}>
+								Here are some helpful links and resources:
+							</Text>
+							<ul style={{ marginTop: "8px" }}>
+								<li>
+									<a href='#' style={{ color: "teal" }}>
+										Resource 1
+									</a>
+								</li>
+								<li>
+									<a href='#' style={{ color: "teal" }}>
+										Resource 2
+									</a>
+								</li>
+								<li>
+									<a href='#' style={{ color: "teal" }}>
+										Resource 3
+									</a>
+								</li>
+							</ul>
+						</AccordionPanel>
+					</AccordionItem>
+				</Accordion>
 
 				<Card
 					w='100%'
@@ -100,12 +133,24 @@ const CourseTopic = () => {
 					variant='outline'
 					bg={cardBgColor}
 					borderColor={iconColor}>
-					<Flex justify='space-between' align='center'>
+					<Flex justify='space-between' align='center' mb={4}>
 						<Heading size='md' color={textColor}>
 							Summary AI
 						</Heading>
 						<CustomButton label='Generate Summary' w={40} />
 					</Flex>
+					<Textarea
+						placeholder='Generated Summary...'
+						size='md'
+						bg={textareaBgColor}
+						color={textareaColor}
+						borderRadius='md'
+						resize='none'
+						border={0}
+						p={4}
+						h={24}
+						readOnly
+					/>
 				</Card>
 			</VStack>
 		</Box>

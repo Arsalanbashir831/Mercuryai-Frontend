@@ -120,7 +120,7 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 										color={menuItemColor}
 										leftIcon={
 											<Icon
-												icon='ph:dot'
+												icon='ph:star'
 												width='16'
 												height='16'
 												color='#FFFFFF'

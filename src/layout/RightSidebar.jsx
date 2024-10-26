@@ -12,7 +12,7 @@ const RightSidebar = ({ headerComponent, headerButton, children }) => {
 			{headerComponent && headerComponent}
 
 			{headerButton && (
-				<Box p={4}>
+				<Box py={4} pr={4}>
 					<CustomButton
 						label={headerButton.label}
 						leftIcon={headerButton.icon}
