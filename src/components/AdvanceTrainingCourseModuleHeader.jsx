@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import CustomButton from "./CustomButton";
-import wavesBg from "../assets/waves4.png";
+import wavesBg from "../assets/waves.png";
 
 const AdvanceTrainingCourseModuleHeader = ({ isUpgraded, setIsUpgraded }) => {
 	const lockedOverlayBg = useColorModeValue("blackAlpha.700", "blackAlpha.900");
@@ -14,10 +14,9 @@ const AdvanceTrainingCourseModuleHeader = ({ isUpgraded, setIsUpgraded }) => {
 			mb={6}
 			p={4}
 			position='relative'
-			overflow='hidden' // Ensures the pseudo-elements don’t spill out
+			overflow='hidden'
 			background='linear-gradient(0deg, #40E0D0 0%, #2196F3 100%)'
-			borderRadius='md' // Optional: Adds rounded corners
-		>
+			borderRadius='md'>
 			{/* Pseudo-elements for left and right images */}
 			<Box
 				position='absolute'
