@@ -87,6 +87,7 @@ const Header = () => {
 						</Button>
 
 						<CustomDropdown
+						pathName ={location.pathname}
 							label='Tools'
 							isMenuActive={isToolsMenuActive}
 							menuItems={toolsMenuItems}

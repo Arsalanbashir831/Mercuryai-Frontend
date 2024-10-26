@@ -24,6 +24,7 @@ export default function CustomDropdown({
 	menuDisclosure,
 	handleMenuItemClick,
 	showLogoutAndThemeToggle = false,
+	pathName
 }) {
 	const { logout } = useAuth();
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -71,7 +72,7 @@ export default function CustomDropdown({
 					<MenuItem
 						key={item.label}
 						color={textColor}
-						bg={menuBgColor}
+						bg={ item.link=== pathName?menuHoverBgColor:menuBgColor}
 						_hover={{ bg: menuHoverBgColor }}
 						onClick={() => handleMenuItemClick(item)}>
 						<Flex align='center' gap={3}>
