@@ -101,7 +101,7 @@ const ChatArea = () => {
 			m={4}
 			bg={bgColor}
 			borderRadius={10}
-			border='1px solid #2196F3'>
+		>
 			<Box p={4} borderBottom='1px' borderColor='gray.200'>
 				<Flex align='center'>
 					<Box flex={1}>

@@ -123,7 +123,7 @@ const AdvanceCourseSidebar = ({ isUpgraded, setIsUpgraded, location }) => {
 												icon='ph:star'
 												width='16'
 												height='16'
-												color='#FFFFFF'
+												color={menuItemColor}
 											/>
 										}
 										bg={

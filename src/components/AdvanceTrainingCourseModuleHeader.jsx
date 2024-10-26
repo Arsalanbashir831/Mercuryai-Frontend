@@ -47,12 +47,12 @@ const AdvanceTrainingCourseModuleHeader = ({ isUpgraded, setIsUpgraded }) => {
 			/>
 
 			{/* Content Section */}
-			<Box position='relative' zIndex={2} textAlign='center'>
+			<Box position='relative' zIndex={2} textAlign='left'>
 				<Text fontSize='2xl' fontWeight='bold' color='white'>
 					Pro Advance Training Course
 				</Text>
 
-				<Flex direction='column' gap={2} color='gray.100' alignItems='center'>
+				<Flex direction='column' gap={2} color='gray.100' alignItems='left'>
 					<Text>Let's proceed, Client Name</Text>
 					<Flex align='center' gap={2}>
 						<Icon icon='mdi:progress-check' />
